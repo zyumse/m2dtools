@@ -65,7 +65,8 @@ def read_pos(file_name):
     natom = np.sum(num_type)
     coors = np.zeros((natom, 3))
 
-    if lf[7].split()[0] == 'C' or lf[7].split()[0] == 'c':
+    if lf[7].split()[0][0] == 'C' or lf[7].split()[0][0] == 'c':
+        print('Cartesian coordinates detected in POSCAR.')
         l = 0
         for ia in lf[8:8+natom]:
             coors[l, :] = np.array(ia.split()[0:3:1]).astype('float')
@@ -78,6 +79,8 @@ def read_pos(file_name):
             rcoors[l, :] = np.array(ia.split()[0:3:1]).astype('float')
             l += 1
         coors = rcoors @ box
+    else:
+        print('Error: only Cartesian or Direct coordinates are supported in POSCAR!')
 
     return box, a_type, num_type, coors
 
