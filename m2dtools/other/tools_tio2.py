@@ -7,13 +7,34 @@ class Dielectric_DP:
     """
     for now, we assume TiO2 slab is at the center of the box
     """
-    def __init__(self, lmp_file):
+    def __init__(self, lmp_file, if_roll=False):
         self.lmp = tl_lmp.read_lammps_full(lmp_file)
         self.lmp.atom_info = self.lmp.atom_info[np.argsort(self.lmp.atom_info[:,0])]
+        if if_roll:
+            self.roll_slab_to_center()
+            
         self.layer_boundaries = self.get_layer_boundary()
         self.volume_per_layer = self.compute_volume_per_layer()
         self.z_layers_center, self.layer_polarizations = self.compute_layer_polarizations()
         self.rho_z = self._charge_density()
+
+    def roll_slab_to_center(self):
+        # z_positions = self.lmp.atom_info[:, 6]
+        Lz = self.lmp.z[1] - self.lmp.z[0]
+        z_half_Lz = Lz / 2
+        # z_surf1 = np.min(z_positions[z_positions < z_half_Lz])
+        # z_surf2 = np.max(z_positions[z_positions > z_half_Lz])
+        # slab_center = 0.5 * (z_surf1 + z_surf2)
+        shift = z_half_Lz
+        print(f'Shifting slab by {shift} A to center it in the box.')
+        for i in range(len(self.lmp.atom_info)):
+            z = self.lmp.atom_info[i, 6]
+            z_new = z + shift
+            if z_new < self.lmp.z[0]:
+                z_new += Lz
+            elif z_new >= self.lmp.z[1]:
+                z_new -= Lz
+            self.lmp.atom_info[i, 6] = z_new
 
     def get_layer_boundary(self):
         atom_types = self.lmp.atom_info[:,2]
@@ -31,7 +52,7 @@ class Dielectric_DP:
         layers = []
         current_layer = [ti_z_sorted[0]]
         for z in ti_z_sorted[1:]:
-            if abs(z - current_layer[-1]) <= 0.5:
+            if abs(z - current_layer[-1]) <= 0.4:
                 current_layer.append(z)
             else:
                 layers.append(np.mean(current_layer))
