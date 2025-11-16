@@ -7,17 +7,25 @@ class Dielectric_DP:
     """
     for now, we assume TiO2 slab is at the center of the box
     """
-    def __init__(self, lmp_file, if_roll=False):
+    def __init__(self, lmp_file, if_roll=False, ignore_WC=False):
         self.lmp = tl_lmp.read_lammps_full(lmp_file)
         self.lmp.atom_info = self.lmp.atom_info[np.argsort(self.lmp.atom_info[:,0])]
         if if_roll:
             self.roll_slab_to_center()
-            
+        if ignore_WC:
+            self.remove_WC_atoms()
         self.layer_boundaries = self.get_layer_boundary()
         self.volume_per_layer = self.compute_volume_per_layer()
         self.z_layers_center, self.layer_polarizations = self.compute_layer_polarizations()
-        self.rho_z = self._charge_density()
-
+        self.rho_z = self._charge_density_all()
+        
+    def remove_WC_atoms(self):
+        # make the WC atoms locations the same as the O atoms they associate with (bonded to)
+        atom_types = self.lmp.atom_info[:,2]
+        wc_indices = np.where(atom_types == 6)[0]  # assuming WC atoms
+        o_indices = np.where(atom_types == 3)[0]  # assuming O atoms
+        self.lmp.atom_info[wc_indices, 4:7] = self.lmp.atom_info[o_indices, 4:7]
+        
     def roll_slab_to_center(self):
         # z_positions = self.lmp.atom_info[:, 6]
         Lz = self.lmp.z[1] - self.lmp.z[0]
@@ -209,18 +217,36 @@ class Dielectric_DP:
         self.z_rho = np.array(z_rho)
         return np.array(rho_z)
 
+    def _charge_density_all(self, dz=0.1):
+        """
+        Compute charge density profile with fixed dz.
+        """
+        charges = self.lmp.atom_info[:, 3]  # charges in e
+        z_positions = self.lmp.atom_info[:, 6]
+        Lz = self.lmp.z[1] - self.lmp.z[0]
+
+        z_rho = np.arange(self.lmp.z[0], self.lmp.z[1], dz)
+        rho_z = []
+
+        volume_sub = (self.lmp.x[1]-self.lmp.x[0]) * (self.lmp.y[1]-self.lmp.y[0]) * dz
+
+        for z_center in z_rho:
+            z_low = z_center - dz / 2
+            z_high = z_center + dz / 2
+
+            mask = (z_positions >= z_low) & (z_positions < z_high)
+            charge_sum = np.sum(charges[mask])
+            rho_z.append(charge_sum / volume_sub)
+
+        self.z_rho = z_rho
+        return np.array(rho_z)
     
-    # def _charge_density(self):
-    #     """Return charge density ρ(z) for one configuration (e/m³)."""
-    #     # each A has 10 bins
-    #     self.nbins = int((self.lmp.z[1]-self.lmp.z[0]) * 10)
-    #     self.box_z = np.array([self.lmp.z[0], self.lmp.z[1]])
-    #     self.Lz = self.box_z[1] - self.box_z[0]
-    #     self.bin_edges = np.linspace(*self.box_z, self.nbins + 1)
-    #     self.bin_centers = 0.5 * (self.bin_edges[:-1] + self.bin_edges[1:])
-    #     charges = self.lmp.atom_info[:, 3] # in units of e
-    #     z_positions = self.lmp.atom_info[:, 6]
-    #     hist, _ = np.histogram(z_positions, bins=self.bin_edges, weights=charges)
-    #     vol_bin = (self.Lz / self.nbins) * (self.lmp.x[1]-self.lmp.x[0]) * (self.lmp.y[1]-self.lmp.y[0]) # volume of each bin (A3)
-    #     print('Volume of each bin (A3):', vol_bin)
-    #     return hist / vol_bin # charge density in e/A3
+    # def _electric_field(self, D):
+    #     """
+    #     Compute electric field profile E(z) = D - 4pi P(z)
+    #     D in V/A
+    #     """
+    #     # epsilon0 = 55.26349406 # e/V/micrometer
+    #     P_z = - np.cumsum(self.rho_z) * (self.lmp.z[1]-self.lmp.z[0])  # in V/A
+    #     E_z = D - 4 * np.pi * P_z
+    #     return E_z
