@@ -50,6 +50,8 @@ def read_pos(file_name):
     """
     read POSCAR format structure file for VASP calculations
     at this moment, only 'C' is applied
+    input: file_name
+    outputs: box,a_type,num_type,coors
     """
     f = open(file_name, 'r')
     lf = list(f)
@@ -250,3 +252,23 @@ def evaluate_linear_fit_np(x, y):
     r2 = 1 - (ss_res / ss_tot)
 
     return r2, np.sqrt(ss_res)
+
+def read_wannier_xyz(filename="wannier90_centres.xyz"):
+    """Return list of Cartesian coordinates in A (N×3)."""
+    with open(filename) as f:
+        f.readline()      # number of points
+        f.readline()      # comment line
+        coords = []
+        types = []
+        for line in f:
+            parts = line.split()
+            if len(parts) >= 4:
+                types.append(parts[0])
+                coords.append([float(parts[1]), float(parts[2]), float(parts[3])])
+    return np.array(types), np.array(coords)
+
+def wrap_to_cell(r, h):
+    """Wrap Cartesian coords into periodic cell h (3×3)."""
+    s = np.linalg.solve(h.T, r.T).T      # Cartesian → fractional
+    s = s - np.floor(s)                  # wrap
+    return (h.T @ s.T).T                 # fractional → Cartesian
