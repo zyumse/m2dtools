@@ -5,3 +5,22 @@ __pycache__/
 dist/
 build/
 
+# -----------------------
+# MkDocs-related ignores
+# -----------------------
+
+# MkDocs build output (do NOT commit the site/)
+site/
+
+# If you use mkdocs gh-deploy locally, it also writes:
+gh-pages/
+
+# -----------------------
+# Editor / OS files
+# -----------------------
+.DS_Store
+Thumbs.db
+
+# IDE settings
+.vscode/
+.idea/

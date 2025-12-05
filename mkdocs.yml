@@ -1,0 +1,21 @@
+site_name: m2dtools
+site_url: https://zyumse.github.io/m2dtools/
+
+theme:
+  name: material
+
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+
+nav:
+  - Home: index.md
+  - Quick Start: quickstart.md
+  - Functions:
+      - basic: references/basic.md
+      - lmp: references/lmp.md
+      # - cg: references/cg.md
+      # - network: reference/network.md
+      - other: references/other.md
+

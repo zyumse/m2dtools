@@ -50,6 +50,8 @@ def read_pos(file_name):
     """
     read POSCAR format structure file for VASP calculations
     at this moment, only 'C' is applied
+    input: file_name
+    outputs: box,a_type,num_type,coors
     """
     f = open(file_name, 'r')
     lf = list(f)
