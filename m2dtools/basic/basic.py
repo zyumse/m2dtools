@@ -1,17 +1,28 @@
-"""
-Basic analysis functions for molecular dynamics simulations.
-- CN: Calculate coordination numbers and neighbor indices within a cutoff distance.
-- CN_large: Calculate coordination numbers for large systems using a cubic search method.
-- angle_distribution: Compute angle distribution for triplets of atoms within a cutoff distance.
-- compute_autocorrelation: Compute force autocorrelation function (FAF).
-- compute_msd_pbc: Compute mean-squared displacement (MSD) considering periodic boundary conditions.
-- calc_compressibility: Calculate compressibility from volume fluctuations.
+"""Basic analysis utilities for molecular dynamics trajectories.
+
+This module gathers small helper routines for coordination numbers, angle
+distributions, compressibility, and force autocorrelations.
 """
 import numpy as np
 
 def CN(box, coors, cutoff):
-    """ 
-    return CN, CN_idx, CN_dist, diff 
+    """Compute coordination numbers within a cutoff.
+
+    Parameters
+    ----------
+    box : np.ndarray
+        Simulation cell vectors as a 3x3 matrix.
+    coors : np.ndarray
+        Atomic coordinates with shape ``(n_atoms, 3)``.
+    cutoff : float
+        Distance cutoff for neighbor identification.
+
+    Returns
+    -------
+    tuple
+        A tuple ``(CN, CN_idx, CN_dist, diff)`` containing coordination
+        counts, neighbor indices, neighbor distances, and displacement
+        vectors under periodic boundary conditions.
     """
 
     rcoors = np.dot(coors, np.linalg.inv(box))
@@ -41,8 +52,22 @@ def CN(box, coors, cutoff):
 
 
 def CN_large(box, coors, cutoff):
-    """
-    return CN, CN_idx, CN_dist
+    """Compute coordination numbers for large systems.
+
+    Parameters
+    ----------
+    box : np.ndarray
+        Simulation cell vectors as a 3x3 matrix.
+    coors : np.ndarray
+        Atomic coordinates with shape ``(n_atoms, 3)``.
+    cutoff : float
+        Distance cutoff for neighbor identification.
+
+    Returns
+    -------
+    tuple
+        A tuple ``(CN, CN_idx, CN_dist)`` with coordination counts,
+        neighbor indices, and neighbor distances for each atom.
     """
     CN = []
     CN_idx = []
@@ -63,11 +88,19 @@ def CN_large(box, coors, cutoff):
 
 
 def calc_compressibility(V, T=300):
-    """
-    Calculate compressibility from volume and temperature.
-    :param V: Volume in nm^3
-    :param T: Temperature in K
-    :return: Compressibility in 1/Pa
+    """Calculate the isothermal compressibility from volume fluctuations.
+
+    Parameters
+    ----------
+    V : np.ndarray
+        Array of volume samples in nm^3.
+    T : float, optional
+        Temperature in Kelvin. Default is 300 K.
+
+    Returns
+    -------
+    float
+        Isothermal compressibility in ``1/Pa``.
     """
     kB = 1.380649e-23  # J/K
     V = V * 1e-27  # Convert from nm^3 to m^3
@@ -76,20 +109,20 @@ def calc_compressibility(V, T=300):
 
 
 def compute_autocorrelation(forces, max_lag):
-    """
-    Compute the force autocorrelation function (FAF).
+    """Compute the force autocorrelation function (FAF).
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     forces : np.ndarray
-        Array of shape (n_frames, n_atoms, 3), forces per atom.
+        Array of shape ``(n_frames, n_atoms, 3)`` containing forces per
+        atom.
     max_lag : int
         Maximum lag time (in frames) for computing the autocorrelation.
 
-    Returns:
-    --------
-    faf : np.ndarray
-        Force autocorrelation function as a 1D array of length max_lag.
+    Returns
+    -------
+    np.ndarray
+        Force autocorrelation values with length ``max_lag``.
     """
     n_frames, n_atoms, _ = forces.shape
 
