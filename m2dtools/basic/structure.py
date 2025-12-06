@@ -1,10 +1,8 @@
-"""
-This module provides functions to compute structural properties of molecular systems, including bond lengths, angles, pair distribution functions (PDF), and structure factors (SQ).
-- compute_bond_length: Calculate bond lengths between bonded atoms.
-- compute_angle: Calculate angles formed by three atoms.
-- pdf_sq_1type: Compute pair distribution function (PDF) and structure factor (SQ) for one type of particles.
-- pdf_sq_cross: Compute PDF and SQ for two types of particles, excluding bonded atoms.
-- pdf_sq_cross_mask: Compute PDF and SQ for two types of particles with a mask matrix.
+"""Structural analysis helpers for molecular simulations.
+
+The functions in this module compute bond lengths, angles, pair distribution
+functions (PDF), and structure factors (SQ) for one or multiple particle
+species.
 """
 
 import numpy as np
@@ -27,10 +25,27 @@ def compute_angle(coors, angle_atoms, box_size):
     return angle/np.pi*180
 
 def pdf_sq_1type(box_size, natom, coors, r_cutoff=10, delta_r=0.01):
-    """
-    only one type of particles
-    inputs: box,natom,type_atom,coors,r_cutoff=10,delta_r = 0.01
-    outputs: R,g1,Q,S1
+    """Calculate PDF and SQ for a single particle type.
+
+    Parameters
+    ----------
+    box_size : float
+        Length of the cubic simulation box (Å).
+    natom : int
+        Number of atoms of the single particle type.
+    coors : np.ndarray
+        Atomic coordinates with shape ``(n_atoms, 3)``.
+    r_cutoff : float, optional
+        Maximum pair distance to consider. Default is ``10``.
+    delta_r : float, optional
+        Bin width for the radial histogram. Default is ``0.01``.
+
+    Returns
+    -------
+    tuple
+        Tuple ``(R, g1, Q, S1)`` where ``R`` are radial bin centers,
+        ``g1`` is the pair distribution, ``Q`` is the scattering vector,
+        and ``S1`` is the structure factor.
     """
     box = np.array([[box_size, 0, 0],
                     [0, box_size, 0],
@@ -68,10 +83,29 @@ def pdf_sq_1type(box_size, natom, coors, r_cutoff=10, delta_r=0.01):
 
 
 def pdf_sq_cross_mask(box, coors1, coors2,  mask_matrix, r_cutoff:float=10, delta_r:float=0.01):
-    """
-    compute pdf and sq for two types of particles (can be same type)
-    inputs: box,coors1,coors2, mask_matrix,r_cutoff=10,delta_r = 0.01
-    outputs: R,g1,Q,S1
+    """Calculate PDF and SQ between two particle sets with masking.
+
+    Parameters
+    ----------
+    box : np.ndarray
+        Simulation cell vectors as a 3x3 matrix.
+    coors1 : np.ndarray
+        Coordinates of the first particle set with shape ``(n1, 3)``.
+    coors2 : np.ndarray
+        Coordinates of the second particle set with shape ``(n2, 3)``.
+    mask_matrix : np.ndarray
+        Matrix masking pair contributions; masked entries are ignored.
+    r_cutoff : float, optional
+        Maximum pair distance to consider. Default is ``10``.
+    delta_r : float, optional
+        Bin width for the radial histogram. Default is ``0.01``.
+
+    Returns
+    -------
+    tuple
+        Tuple ``(R, g1, Q, S1)`` where ``R`` are radial bin centers,
+        ``g1`` is the pair distribution, ``Q`` is the scattering vector,
+        and ``S1`` is the structure factor.
     """
     n1 = len(coors1)
     n2 = len(coors2)
@@ -112,10 +146,30 @@ def pdf_sq_cross_mask(box, coors1, coors2,  mask_matrix, r_cutoff:float=10, delt
 
 
 def pdf_sq_cross(box, coors1, coors2,  bond_atom_idx, r_cutoff:float=10, delta_r:float=0.01):
-    """
-    compute pdf and sq for two types of particles (can be same type)
-    inputs: box,coors1,coors2,bond_atom_idx,r_cutoff=10,delta_r = 0.01
-    outputs: R,g1,Q,S1
+    """Calculate PDF and SQ between two particle sets.
+
+    Parameters
+    ----------
+    box : np.ndarray
+        Simulation cell vectors as a 3x3 matrix.
+    coors1 : np.ndarray
+        Coordinates of the first particle set with shape ``(n1, 3)``.
+    coors2 : np.ndarray
+        Coordinates of the second particle set with shape ``(n2, 3)``.
+    bond_atom_idx : array-like or None
+        Pairs of indices identifying bonded atoms to exclude from the
+        distribution. ``None`` disables exclusion.
+    r_cutoff : float, optional
+        Maximum pair distance to consider. Default is ``10``.
+    delta_r : float, optional
+        Bin width for the radial histogram. Default is ``0.01``.
+
+    Returns
+    -------
+    tuple
+        Tuple ``(R, g1, Q, S1)`` where ``R`` are radial bin centers,
+        ``g1`` is the pair distribution, ``Q`` is the scattering vector,
+        and ``S1`` is the structure factor.
     """
     # check if coors1 and coors2 are exactly the same
     if np.array_equal(coors1, coors2):
@@ -169,7 +223,20 @@ def pdf_sq_cross(box, coors1, coors2,  bond_atom_idx, r_cutoff:float=10, delta_r
 
 
 def calculate_angle(v1, v2):
-    """Calculate the angle between two vectors."""
+    """Calculate the angle between two vectors.
+
+    Parameters
+    ----------
+    v1 : np.ndarray
+        First vector.
+    v2 : np.ndarray
+        Second vector.
+
+    Returns
+    -------
+    float
+        Angle in degrees between ``v1`` and ``v2``.
+    """
     cos_angle = np.dot(v1, v2) / (np.linalg.norm(v1) * np.linalg.norm(v2))
     # convert to angle degree
     angle = np.arccos(cos_angle)/np.pi*180
@@ -177,10 +244,21 @@ def calculate_angle(v1, v2):
 
 
 def angle_distribution(coors, box, cutoff):
-    """
-    compute O-O-O angle distribution in water within a cutoff distance
-    inputs: coors, box, cutoff
-    outputs: angles
+    """Compute the O–O–O angle distribution within a cutoff.
+
+    Parameters
+    ----------
+    coors : np.ndarray
+        Atomic coordinates with shape ``(n_atoms, 3)``.
+    box : np.ndarray
+        Simulation cell vectors as a 3x3 matrix.
+    cutoff : float
+        Maximum O–O separation to include in the triplet selection.
+
+    Returns
+    -------
+    list[float]
+        Angles in degrees for all qualifying triplets.
     """
     n_atom = coors.shape[0]
     angles = []
