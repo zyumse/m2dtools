@@ -7,6 +7,10 @@ https://zyumse.github.io/m2dtools/
 
 ## Installation
 
+   ```
+   pip install m2dtools
+   ```
+
 1. Clone this repository and move into it.
 2. (Optional) Create and activate a Python 3.8+ environment.
 3. Install the package in editable mode:
