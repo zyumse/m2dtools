@@ -1,16 +1,21 @@
 import numpy as np
 
 def midpoint_pbc(coords, idx_a, box):
-    """
-    Calculate the midpoint between two atoms in a bond considering PBC.
+    """Calculate bond midpoints under periodic boundary conditions.
 
-    Parameters:
-    - coords: Array containing atomic coordinates (N x 3 where N is the number of atoms).
-    - idx_a: Indices of atoms forming bonds (M x 2 where M is the number of bonds).
-    - box: 3x3 matrix representing the simulation box.
+    Parameters
+    ----------
+    coords : numpy.ndarray
+        Atomic coordinates with shape ``(N, 3)``.
+    idx_a : numpy.ndarray
+        Bond atom indices with shape ``(M, 2)``.
+    box : numpy.ndarray
+        ``(3, 3)`` simulation box matrix.
 
-    Returns:
-    - Array containing midpoints (M x 3).
+    Returns
+    -------
+    numpy.ndarray
+        Midpoint coordinates with shape ``(M, 3)``.
     """
     midpoints = []
     box_diag = np.diag(box)
@@ -30,12 +35,19 @@ def midpoint_pbc(coords, idx_a, box):
     return np.array(midpoints)
 
 def concatenate_xyz(filenames, output_filename="combined.xyz"):
-    """
-    Concatenate multiple XYZ files into a single file.
+    """Concatenate multiple XYZ files into a single file.
 
-    Parameters:
-    - filenames: List of names of XYZ files to concatenate.
-    - output_filename: Name of the output concatenated XYZ file.
+    Parameters
+    ----------
+    filenames : list[str]
+        List of XYZ files to concatenate.
+    output_filename : str, default "combined.xyz"
+        Name of the concatenated XYZ file.
+
+    Returns
+    -------
+    None
+        Writes the concatenated trajectory to ``output_filename``.
     """
     with open(output_filename, 'w') as outfile:
         for fname in filenames:
@@ -45,13 +57,23 @@ def concatenate_xyz(filenames, output_filename="combined.xyz"):
                     outfile.write(line)
 
 def write_xyz_from_density(density, threshold, bin_size, filename="output.xyz"):
-    """
-    Write an XYZ file from a density array.
+    """Write pseudo-atoms for grid points exceeding a density threshold.
 
-    Parameters:
-    - density: 3D numpy array of density values.
-    - threshold: minimum density value to include in the output.
-    - filename: name of the output XYZ file.
+    Parameters
+    ----------
+    density : numpy.ndarray
+        3D array of density values.
+    threshold : float
+        Minimum density value to include.
+    bin_size : tuple[float, float, float]
+        Grid spacing along each dimension.
+    filename : str, default "output.xyz"
+        Output XYZ file path.
+
+    Returns
+    -------
+    None
+        Writes the pseudo-atom coordinates and densities to ``filename``.
     """
     # Identify points exceeding the threshold
     indices = np.where(density > threshold)
