@@ -7,8 +7,28 @@ import numpy as np
 
 
 def supercell(natoms, box0, nx, ny, nz, index0, atom_type0, coors0):
-    """
-    at this moment, only for orthogonal cell
+    """Build a replicated supercell from an orthogonal unit cell.
+
+    Parameters
+    ----------
+    natoms : int
+        Number of atoms in the original cell.
+    box0 : numpy.ndarray
+        ``(3, 3)`` box matrix for the original cell.
+    nx, ny, nz : int
+        Replication counts along each lattice vector.
+    index0 : numpy.ndarray
+        Atom indices for the original cell.
+    atom_type0 : numpy.ndarray
+        Atom types for the original cell.
+    coors0 : numpy.ndarray
+        Cartesian coordinates for the original cell.
+
+    Returns
+    -------
+    tuple
+        ``(natoms_new, box_new, index_new, atom_type_new, coors_new)`` for the
+        replicated supercell.
     """
 
     box_new = box0@np.array([[nx, 0, 0], [0, ny, 0], [0, 0, nz]])
@@ -47,11 +67,17 @@ def is_data_line(line):
 
 
 def read_pos(file_name):
-    """
-    read POSCAR format structure file for VASP calculations
-    at this moment, only 'C' is applied
-    input: file_name
-    outputs: box,a_type,num_type,coors
+    """Read a VASP POSCAR structure.
+
+    Parameters
+    ----------
+    file_name : str
+        Path to the POSCAR file.
+
+    Returns
+    -------
+    tuple[numpy.ndarray, numpy.ndarray, numpy.ndarray, numpy.ndarray]
+        Box matrix, atomic species, species counts and Cartesian coordinates.
     """
     f = open(file_name, 'r')
     lf = list(f)
@@ -88,9 +114,25 @@ def read_pos(file_name):
 
 
 def write_pos(file_name, box, a_type, num_type, coors):
-    """
-    write POSCAR format structure file for VASP calculations
-    input: file_name,box,a_type,num_type,coors
+    """Write a VASP POSCAR structure.
+
+    Parameters
+    ----------
+    file_name : str
+        Destination POSCAR path.
+    box : numpy.ndarray
+        ``(3, 3)`` lattice matrix.
+    a_type : array-like
+        Sequence of element symbols.
+    num_type : array-like
+        Number of atoms for each element.
+    coors : numpy.ndarray
+        Cartesian coordinates for all atoms.
+
+    Returns
+    -------
+    None
+        The POSCAR file is written to ``file_name``.
     """
     f = open(file_name, 'w')
     f.write('written by python script\n')
@@ -115,10 +157,28 @@ def write_pos(file_name, box, a_type, num_type, coors):
 
 
 def pdf_sq_1type(box, natom, type_atom, coors, r_cutoff=10, delta_r=0.01):
-    """
-    only one type of particles
-    inputs: box,natom,type_atom,coors,r_cutoff=10,delta_r = 0.01
-    outputs: R,g1,Q,S1
+    """Compute pair distribution and structure factors for a single species.
+
+    Parameters
+    ----------
+    box : numpy.ndarray
+        Simulation box matrix.
+    natom : int
+        Total number of atoms.
+    type_atom : array-like
+        Atom type identifiers.
+    coors : numpy.ndarray
+        Cartesian coordinates.
+    r_cutoff : float, default 10
+        Maximum distance for the radial distribution function.
+    delta_r : float, default 0.01
+        Bin width for the radial distribution function.
+
+    Returns
+    -------
+    tuple[numpy.ndarray, numpy.ndarray, numpy.ndarray, numpy.ndarray]
+        Radial positions, pair distribution function, q values and structure
+        factor for the single-species system.
     """
     type_atom = np.array(type_atom)
     n1 = natom
@@ -176,12 +236,23 @@ def progressbar(it, prefix="", size=60, out=sys.stdout):  # Python3.3+
 
 
 def replace_in_file(file_path_old, file_path_new, old_string, new_string):
-    """
-    Replace all occurrences of old_string with new_string in the file at file_path.
+    """Replace text within a file and write the updated copy.
 
-    :param file_path: Path to the file where the replacement will be made.
-    :param old_string: The string to be replaced.
-    :param new_string: The new string that will replace old_string.
+    Parameters
+    ----------
+    file_path_old : str
+        Source file to read.
+    file_path_new : str
+        Destination path for the updated content.
+    old_string : str
+        Text to be replaced.
+    new_string : str
+        Replacement text.
+
+    Returns
+    -------
+    None
+        Writes ``file_path_new`` with updated contents.
     """
     try:
         # Read the content of the file
@@ -218,14 +289,23 @@ def read_ORCA(filename, search_words, skip_lines, stop_words, dtype='object'):
 
 
 def write_xyz_file(atom_types, coordinates, filename, comment=""):
-    """
-    Write an XYZ file from atom types and coordinates.
+    """Write an XYZ file from atom types and coordinates.
 
-    Parameters:
-    - atom_types (list of str): Atom types/symbols.
-    - coordinates (list of list of floats): Coordinates of each atom.
-    - filename (str): Path to the output XYZ file.
-    - comment (str): A comment for the second line of the XYZ file.
+    Parameters
+    ----------
+    atom_types : list[str]
+        Atom types or symbols.
+    coordinates : list[tuple[float, float, float]]
+        Cartesian coordinates for each atom.
+    filename : str
+        Path to the output XYZ file.
+    comment : str, default ""
+        Comment to include on the second line of the file.
+
+    Returns
+    -------
+    None
+        The XYZ file is written to ``filename``.
     """
     num_atoms = len(atom_types)
     with open(filename, 'w') as file:
@@ -236,8 +316,19 @@ def write_xyz_file(atom_types, coordinates, filename, comment=""):
 
 
 def evaluate_linear_fit_np(x, y):
-    """
-    return r2 and MSE 
+    """Evaluate a simple linear fit.
+
+    Parameters
+    ----------
+    x : numpy.ndarray
+        Independent variable values.
+    y : numpy.ndarray
+        Dependent variable values.
+
+    Returns
+    -------
+    tuple[float, float]
+        Coefficient of determination (R^2) and mean squared error.
     """
     # Fit a linear model
     coefficients = np.polyfit(x, y, 1)

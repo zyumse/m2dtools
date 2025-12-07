@@ -4,8 +4,14 @@ import matplotlib.pyplot as plt
 from copy import copy
 
 class Dielectric_DP:
-    """
-    for now, we assume TiO2 slab is at the center of the box
+    """Analyze dielectric properties of TiO2 slabs.
+
+    Parameters
+    ----------
+    lmp_file : str
+        Path to the LAMMPS data file representing the slab.
+    if_roll : bool, default False
+        Whether to shift the slab to the center of the simulation cell.
     """
     def __init__(self, lmp_file, if_roll=False):
         self.lmp = tl_lmp.read_lammps_full(lmp_file)

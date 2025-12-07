@@ -10,7 +10,18 @@ import scipy.constants as scc
 import pandas as pd
 
 def read_gro(file_name):
-    """return box,natom,type_atom,coors"""
+    """Read a GROMACS ``.gro`` file.
+
+    Parameters
+    ----------
+    file_name : str
+        Path to the ``.gro`` file.
+
+    Returns
+    -------
+    tuple[numpy.ndarray, int, numpy.ndarray, numpy.ndarray]
+        Box matrix, atom count, atom types and coordinates.
+    """
     f = open(file_name, 'r')
     lf = list(f)
     f.close()
@@ -37,7 +48,26 @@ def read_gro(file_name):
 
 
 def write_gro(filename, box, natom, type_atom, coors):
-    """Input:filename,box,natom,type_atom,coors"""
+    """Write a GROMACS ``.gro`` file.
+
+    Parameters
+    ----------
+    filename : str
+        Output file name without extension.
+    box : numpy.ndarray
+        ``(3, 3)`` box matrix (orthogonal only).
+    natom : int
+        Number of atoms.
+    type_atom : array-like
+        Atom type identifiers.
+    coors : numpy.ndarray
+        Cartesian coordinates for each atom.
+
+    Returns
+    -------
+    None
+        Writes ``filename.gro`` to disk.
+    """
     f = open('{}.gro'.format(filename), 'w')
     f.write('SiO2\n')
     f.write('{0:5d} \n'.format(natom))
@@ -51,9 +81,18 @@ def write_gro(filename, box, natom, type_atom, coors):
 
 
 def read_gro_multi(gro_file):
-    """
-    read multiple frames in one gro file,
-    return a list, in which each element contains box, natom, type_atom, coors
+    """Read multiple frames from a concatenated ``.gro`` file.
+
+    Parameters
+    ----------
+    gro_file : str
+        Path to the multi-frame ``.gro`` file.
+
+    Returns
+    -------
+    tuple[list, list]
+        List of frame tuples ``(box, natom, type_atom, coors)`` and the
+        corresponding timestep labels.
     """
 
     f = open(gro_file)
@@ -102,7 +141,20 @@ def read_gro_multi(gro_file):
 
 
 def gro2pos(posfile, grofile):
-    """Convert .gro to POSCAR """
+    """Convert a ``.gro`` file to a POSCAR structure.
+
+    Parameters
+    ----------
+    posfile : str
+        Destination POSCAR file path.
+    grofile : str
+        Source ``.gro`` trajectory file.
+
+    Returns
+    -------
+    None
+        Writes the POSCAR representation to ``posfile``.
+    """
     box, natom, type_atom, coors0 = read_gro('{}'.format(grofile))
 
     elements = list(set(type_atom))

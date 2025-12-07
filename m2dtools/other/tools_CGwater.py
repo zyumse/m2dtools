@@ -7,17 +7,22 @@ import pdb
 
 
 def dipole_dipole_correlation(positions, dipoles, L_list):
-    """
-    Compute the dipole-dipole correlation function.
+    """Compute the dipole–dipole correlation function.
 
-    Parameters:
-    - positions: (N, 3) array of particle positions.
-    - dipoles: (N, 3) array of particle dipole moments.
-    - box_size: [Lx, Ly, Lz] box size.
+    Parameters
+    ----------
+    positions : numpy.ndarray
+        Particle positions with shape ``(N, 3)``.
+    dipoles : numpy.ndarray
+        Dipole moment vectors with shape ``(N, 3)``.
+    L_list : list
+        Periodic box bounds ``[[xlo, xhi], [ylo, yhi], [zlo, zhi]]``.
 
-    Returns:
-    - distances: (N*(N-1)/2,) array of pairwise distances.
-    - product_cos_theta: (N*(N-1)/2,) array of pairwise product of cos(theta_ij).
+    Returns
+    -------
+    tuple[numpy.ndarray, numpy.ndarray]
+        Pairwise distances and products of ``cos(theta_ij)`` for all dipole
+        pairs.
     """
     N = len(positions)
     box_size = [L_list[0][1]-L_list[0][0],
@@ -43,10 +48,28 @@ def dipole_dipole_correlation(positions, dipoles, L_list):
 
 
 def pdf_sq_1type(box, natom, type_atom, coors, r_cutoff=10, delta_r=0.01):
-    """
-    only one type of particles
-    inputs: box,natom,type_atom,coors,r_cutoff=10,delta_r = 0.01
-    outputs: R,g1,Q,S1
+    """Compute pair distribution and structure factors for a single species.
+
+    Parameters
+    ----------
+    box : numpy.ndarray
+        Simulation box matrix.
+    natom : int
+        Total number of atoms.
+    type_atom : array-like
+        Atom type identifiers.
+    coors : numpy.ndarray
+        Cartesian coordinates.
+    r_cutoff : float, default 10
+        Maximum distance for the radial distribution function.
+    delta_r : float, default 0.01
+        Bin width for the radial distribution function.
+
+    Returns
+    -------
+    tuple[numpy.ndarray, numpy.ndarray, numpy.ndarray, numpy.ndarray]
+        Radial positions, pair distribution function, q values and structure
+        factor for the single-species system.
     """
     type_atom = np.array(type_atom)
     n1 = natom
@@ -82,7 +105,26 @@ def pdf_sq_1type(box, natom, type_atom, coors, r_cutoff=10, delta_r=0.01):
 
 
 def pdf_sq_cross(box, coors1, coors2, r_cutoff=10, delta_r=0.01):
-    """
+    """Compute cross pair distributions between two species.
+
+    Parameters
+    ----------
+    box : numpy.ndarray
+        Simulation box matrix.
+    coors1 : numpy.ndarray
+        Coordinates for species 1.
+    coors2 : numpy.ndarray
+        Coordinates for species 2.
+    r_cutoff : float, default 10
+        Maximum distance for the radial distribution function.
+    delta_r : float, default 0.01
+        Bin width for the radial distribution function.
+
+    Returns
+    -------
+    tuple[numpy.ndarray, numpy.ndarray, numpy.ndarray, numpy.ndarray]
+        Radial positions, cross pair distribution function, q values and
+        structure factor.
     """
     # type_atom = np.array(type_atom)
     n1 = len(coors1)
@@ -142,7 +184,20 @@ def read_log_lammps(logfile):
 
 
 def calculate_angle(v1, v2):
-    """Calculate the angle between two vectors."""
+    """Calculate the angle between two vectors.
+
+    Parameters
+    ----------
+    v1 : numpy.ndarray
+        First vector of length three.
+    v2 : numpy.ndarray
+        Second vector of length three.
+
+    Returns
+    -------
+    float
+        Angle between ``v1`` and ``v2`` in degrees.
+    """
     cos_angle = np.dot(v1, v2) / (np.linalg.norm(v1) * np.linalg.norm(v2))
     # convert to angle degree
     angle = np.arccos(cos_angle)/np.pi*180
@@ -150,8 +205,21 @@ def calculate_angle(v1, v2):
 
 
 def angle_distribution(coors, box, cutoff):
-    """
-    compute O-O-O angle distribution in water within a cutoff distance
+    """Compute O–O–O angle distributions within a cutoff.
+
+    Parameters
+    ----------
+    coors : numpy.ndarray
+        Cartesian coordinates of shape ``(n_atoms, 3)``.
+    box : numpy.ndarray
+        Simulation box vectors arranged as rows.
+    cutoff : float
+        Distance cutoff for neighbor selection.
+
+    Returns
+    -------
+    list[float]
+        Collection of O–O–O angles in degrees.
     """
     n_atom = coors.shape[0]
     angles = []
@@ -177,7 +245,20 @@ def angle_distribution(coors, box, cutoff):
 
 
 def tetrahedral_order_parameter(positions, box):
-    """Calculate the tetrahedral order parameter for a central molecule and its four neighbors."""
+    """Calculate the tetrahedral order parameter for a central molecule.
+
+    Parameters
+    ----------
+    positions : list[numpy.ndarray]
+        Coordinates for a central molecule followed by four neighbors.
+    box : numpy.ndarray
+        Simulation box matrix used for minimum-image wrapping.
+
+    Returns
+    -------
+    float
+        Tetrahedral order parameter ``q`` for the central molecule.
+    """
     q = 0
     for j in range(1, 4):
         for k in range(j + 1, 5):
@@ -194,8 +275,21 @@ def tetrahedral_order_parameter(positions, box):
 
 
 def compute_tetrahedral_order(coors, box, cutoff=3.5):
-    """
-    return q_list, the tetrahedral order parameter for each atom
+    """Compute the tetrahedral order parameter for all atoms.
+
+    Parameters
+    ----------
+    coors : numpy.ndarray
+        Cartesian coordinates for all atoms.
+    box : numpy.ndarray
+        Simulation box matrix.
+    cutoff : float, default 3.5
+        Neighbor cutoff distance in ångström.
+
+    Returns
+    -------
+    list[float]
+        Tetrahedral order parameter for atoms with at least four neighbors.
     """
     n_atom = coors.shape[0]
     q_list = []
@@ -221,10 +315,25 @@ def compute_tetrahedral_order(coors, box, cutoff=3.5):
 
 def write_pot_CGwater_bond(file_name, r, E_OO, F_OO, E_MM, F_MM, E_MO, F_MO,
                            r_bond, E_MO_bond, F_MO_bond):
-    """
-    write the two-body potential to a table file for lammps simulations
-    it is for now only for the CG water model (2p with dipole information)
-    with bonded interaction
+    """Write tabulated two-body CG water potentials.
+
+    Parameters
+    ----------
+    file_name : str
+        Output table file path.
+    r : numpy.ndarray
+        Distance grid for nonbonded terms.
+    E_OO, F_OO, E_MM, F_MM, E_MO, F_MO : numpy.ndarray
+        Energies and forces for OO, MM and MO interactions.
+    r_bond : numpy.ndarray
+        Distance grid for the bonded MO term.
+    E_MO_bond, F_MO_bond : numpy.ndarray
+        Energy and force tables for the bonded MO interaction.
+
+    Returns
+    -------
+    None
+        Writes the tabulated potentials for LAMMPS simulations.
     """
     t = datetime.date.today().strftime('%m/%d/%Y')
     f = open(file_name, 'w')
@@ -265,8 +374,23 @@ def write_pot_CGwater_bond(file_name, r, E_OO, F_OO, E_MM, F_MM, E_MO, F_MO,
 
 
 def write_OOOangle_table_CGwater(file_name, angles, e_pot, f_pot):
-    """
-    Write the angle distribution to a file.
+    """Write angle distribution tables for CG water.
+
+    Parameters
+    ----------
+    file_name : str
+        Output table file path.
+    angles : numpy.ndarray
+        Angle grid in degrees.
+    e_pot : numpy.ndarray
+        Angular potential values.
+    f_pot : numpy.ndarray
+        Angular force values.
+
+    Returns
+    -------
+    None
+        Writes the angle potential tables to ``file_name``.
     """
     with open(file_name, 'w') as f:
         f.write(f"{len(angles)}\n")

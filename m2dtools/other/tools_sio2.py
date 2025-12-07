@@ -6,10 +6,22 @@ import scipy.constants as scc
 import pandas as pd
 
 def bond_angle_SiOSi(type_atoms, CN_idx, vectors):
-    '''
-    CN_idx stores ...
-    vectors stores n*n*3 matrix, diff
-    '''
+    """Compute Si–O–Si bond angles from connectivity data.
+
+    Parameters
+    ----------
+    type_atoms : numpy.ndarray
+        Atom type labels.
+    CN_idx : numpy.ndarray
+        Neighbor indices for each atom.
+    vectors : numpy.ndarray
+        Displacement vectors with shape ``(n_atoms, n_atoms, 3)``.
+
+    Returns
+    -------
+    numpy.ndarray
+        Array of Si–O–Si bond angles in degrees.
+    """
     bond_angle = []
     for i in np.argwhere(type_atoms == 'O')[:, 0]:
         for j1 in range(CN_idx[i].shape[0]):
@@ -29,9 +41,21 @@ def bond_angle_SiOSi(type_atoms, CN_idx, vectors):
 
 
 def bond_angle_OSiO(type_atoms, CN_idx, vectors):
-    """
-    CN_idx stores ...
-    vectors stores n*n*3 matrix, diff
+    """Compute O–Si–O bond angles from connectivity data.
+
+    Parameters
+    ----------
+    type_atoms : numpy.ndarray
+        Atom type labels.
+    CN_idx : numpy.ndarray
+        Neighbor indices for each atom.
+    vectors : numpy.ndarray
+        Displacement vectors with shape ``(n_atoms, n_atoms, 3)``.
+
+    Returns
+    -------
+    numpy.ndarray
+        Array of O–Si–O bond angles in degrees.
     """
     bond_angle = []
     for i in np.argwhere(type_atoms == 'Si')[:, 0]:
@@ -49,7 +73,21 @@ def bond_angle_OSiO(type_atoms, CN_idx, vectors):
 
 
 def bond_length_SiO(type_atoms, CN_idx, vectors):
-    """
+    """Calculate Si–O bond lengths.
+
+    Parameters
+    ----------
+    type_atoms : numpy.ndarray
+        Atom type labels.
+    CN_idx : numpy.ndarray
+        Neighbor indices for each atom.
+    vectors : numpy.ndarray
+        Displacement vectors with shape ``(n_atoms, n_atoms, 3)``.
+
+    Returns
+    -------
+    list[float]
+        List of Si–O bond lengths.
     """
     bond_length = []
     for i in np.argwhere(type_atoms == 'Si')[:, 0]:
