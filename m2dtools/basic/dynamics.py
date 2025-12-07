@@ -77,8 +77,10 @@ def random_vectors(length, num_vectors):
 
     return np.column_stack((x, y, z))   # shape = (num_vectors, 3)
 
+
+
 #compute self-intermediate scattering function
-def compute_self_intermediate_scattering_function(positions, box_lengths, lag_array, k, num_vectors=100, n_repeat=100):
+def compute_SISF(positions, box_lengths, lag_array, k, num_vectors=100, n_repeat=100):
     """Compute the self-intermediate scattering function (SISF).
 
     Parameters
@@ -115,6 +117,7 @@ def compute_self_intermediate_scattering_function(positions, box_lengths, lag_ar
 
     sisf = np.zeros(len(lag_array))
     vectors=random_vectors(k, num_vectors)
+
     for i, lag in enumerate(lag_array):
         if len(positions)-lag < n_repeat:
             displacements = unwrapped_pos[lag:] - unwrapped_pos[:-lag]
@@ -126,3 +129,86 @@ def compute_self_intermediate_scattering_function(positions, box_lengths, lag_ar
             cos_kr = np.cos(np.einsum('ij,tkj->tki', vectors, displacements))
         sisf[i] = np.mean(cos_kr)
     return sisf
+
+def random_vectors_2D(k, num_vectors):
+        phi = np.random.uniform(0, 2*np.pi, size=num_vectors)
+        x = k * np.cos(phi)
+        y = k * np.sin(phi)
+        z = np.zeros(num_vectors)
+        return np.column_stack((x, y, z))   # shape = (num_vectors, 3)
+
+def compute_SISF_zresolved(positions, box_lengths, lag_array, k,
+                            z_ranges,
+                            num_vectors=100, n_repeat=100) -> np.ndarray:
+    """
+    Layer-resolved SISF with z-bin assignment performed at every time origin t0.
+
+    Parameters
+    ----------
+    z_ranges : list of tuple
+        List of (zmin, zmax) tuples defining the layers along z-axis.
+    Other parameters are the same as in `compute_SISF`.
+
+    Returns
+    -------
+    np.ndarray
+        Self-intermediate scattering values for each layer and lag time.
+    """
+
+    n_frames, n_atoms, _ = positions.shape
+    n_layers = len(z_ranges)
+
+    # ---- unwrap ----
+    unwrapped = np.zeros_like(positions)
+    unwrapped[0] = positions[0]
+
+    for t in range(1, n_frames):
+        box_tmp = 0.5 * (box_lengths[t] + box_lengths[t-1])
+        delta = positions[t] - unwrapped[t-1]
+        delta -= box_tmp * np.round(delta / box_tmp)
+        unwrapped[t] = unwrapped[t-1] + delta
+
+    # ---- random k vectors ----
+    vectors = random_vectors_2D(k, num_vectors)
+
+    # ---- output ----
+    sisf_layers = np.zeros((n_layers, len(lag_array)))
+
+    # ---- compute for each lag ----
+    for i, lag in enumerate(lag_array):
+
+        max_origin = n_frames - lag
+        if max_origin < n_repeat:
+            origins = np.arange(max_origin)
+        else:
+            origins = np.random.choice(max_origin, n_repeat, replace=False)
+
+        # accumulator for each layer
+        accum = [ [] for _ in range(n_layers) ]
+
+        for t0 in origins:
+            z_now = unwrapped[t0, :, 2]   # z positions at time origin
+
+            # assign atoms at this time origin
+            atom_layers = []
+            for (zmin, zmax) in z_ranges:
+                atom_layers.append(np.where((z_now >= zmin) & (z_now < zmax))[0])
+
+            # compute displacements from t0 to t0+lag
+            disp = unwrapped[t0 + lag] - unwrapped[t0]   # (N,3)
+
+            for L, atoms_L in enumerate(atom_layers):
+                if len(atoms_L) == 0:
+                    continue
+
+                d = disp[atoms_L]           # (n_atoms_L, 3)
+
+                cos_kr = np.cos(np.einsum("ij,nj->ni", vectors, d))
+                accum[L].append(np.mean(cos_kr))
+
+        # average for each layer
+        for L in range(n_layers):
+            if len(accum[L]) > 0:
+                sisf_layers[L, i] = np.mean(accum[L])
+
+    return sisf_layers
