@@ -948,7 +948,15 @@
 
 
 
+
+
+
+
+
+
+
   <div class="doc doc-children">
+
 
 
 
@@ -972,6 +980,7 @@
         <p>compute O-O-O angle distribution in water within a cutoff distance
 inputs: coors, box, cutoff
 outputs: angles</p>
+
 
             <details class="quote">
               <summary>Source code in <code>m2dtools/lmp/tools_lammps.py</code></summary>
@@ -1003,7 +1012,7 @@ outputs: angles</p>
 <span class="normal">1151</span>
 <span class="normal">1152</span>
 <span class="normal">1153</span>
-<span class="normal">1154</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">angle_distribution</span><span class="p">(</span><span class="n">coors</span><span class="p">,</span> <span class="n">box</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">):</span>
+<span class="normal">1154</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">angle_distribution</span><span class="p">(</span><span class="n">coors</span><span class="p">,</span> <span class="n">box</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    compute O-O-O angle distribution in water within a cutoff distance</span>
 <span class="sd">    inputs: coors, box, cutoff</span>
@@ -1061,6 +1070,7 @@ Returns:
     df_std: pd.DataFrame
         DataFrame of standard deviation values.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/lmp/tools_lammps.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1239</span>
@@ -1088,7 +1098,7 @@ Returns:
 <span class="normal">1261</span>
 <span class="normal">1262</span>
 <span class="normal">1263</span>
-<span class="normal">1264</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">average_log</span><span class="p">(</span><span class="n">log_files</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="normal">1264</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">average_log</span><span class="p">(</span><span class="n">log_files</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Average the log data from multiple files.</span>
 <span class="sd">    Parameters:</span>
@@ -1136,6 +1146,7 @@ Returns:
 :param T: Temperature in K
 :return: Compressibility in 1/Pa</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/lmp/tools_lammps.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1227</span>
@@ -1148,7 +1159,7 @@ Returns:
 <span class="normal">1234</span>
 <span class="normal">1235</span>
 <span class="normal">1236</span>
-<span class="normal">1237</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">calc_compressibility</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">300</span><span class="p">):</span>
+<span class="normal">1237</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">calc_compressibility</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">300</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate compressibility from volume and temperature.</span>
 <span class="sd">    :param V: Volume in nm^3</span>
@@ -1178,6 +1189,7 @@ Returns:
 
         <p>Calculate the angle between two vectors.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/lmp/tools_lammps.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1118</span>
@@ -1185,7 +1197,7 @@ Returns:
 <span class="normal">1120</span>
 <span class="normal">1121</span>
 <span class="normal">1122</span>
-<span class="normal">1123</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">calculate_angle</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span>
+<span class="normal">1123</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">calculate_angle</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the angle between two vectors.&quot;&quot;&quot;</span>
     <span class="n">cos_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v2</span><span class="p">))</span>
     <span class="c1"># convert to angle degree</span>
@@ -1217,6 +1229,7 @@ max_lag : int
 <h4 id="m2dtools.lmp.tools_lammps.compute_autocorrelation--returns">Returns:</h4>
 <p>faf : np.ndarray
     Force autocorrelation function as a 1D array of length max_lag.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>m2dtools/lmp/tools_lammps.py</code></summary>
@@ -1250,7 +1263,7 @@ max_lag : int
 <span class="normal">1183</span>
 <span class="normal">1184</span>
 <span class="normal">1185</span>
-<span class="normal">1186</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">compute_autocorrelation</span><span class="p">(</span><span class="n">forces</span><span class="p">,</span> <span class="n">max_lag</span><span class="p">):</span>
+<span class="normal">1186</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compute_autocorrelation</span><span class="p">(</span><span class="n">forces</span><span class="p">,</span> <span class="n">max_lag</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute the force autocorrelation function (FAF).</span>
 
@@ -1310,6 +1323,7 @@ lag_array : np.ndarray or list
 <p>msd : np.ndarray
     Mean-squared displacement as 1D array of length max_lag.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/lmp/tools_lammps.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1188</span>
@@ -1349,7 +1363,7 @@ lag_array : np.ndarray or list
 <span class="normal">1222</span>
 <span class="normal">1223</span>
 <span class="normal">1224</span>
-<span class="normal">1225</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">compute_msd_pbc</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">box_lengths</span><span class="p">,</span> <span class="n">lag_array</span><span class="p">):</span>
+<span class="normal">1225</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compute_msd_pbc</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">box_lengths</span><span class="p">,</span> <span class="n">lag_array</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute mean-squared displacement (MSD) considering periodic boundary conditions.</span>
 
@@ -1412,6 +1426,7 @@ lag_array : np.ndarray or list
 <p>Returns:
 - dist_matrix (np.ndarray): An (N x M) matrix of distances.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/lmp/tools_lammps.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">219</span>
@@ -1435,7 +1450,7 @@ lag_array : np.ndarray or list
 <span class="normal">237</span>
 <span class="normal">238</span>
 <span class="normal">239</span>
-<span class="normal">240</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">distance_pbc</span><span class="p">(</span><span class="n">coord1</span><span class="p">,</span> <span class="n">coord2</span><span class="p">,</span> <span class="n">box</span><span class="p">):</span>
+<span class="normal">240</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">distance_pbc</span><span class="p">(</span><span class="n">coord1</span><span class="p">,</span> <span class="n">coord2</span><span class="p">,</span> <span class="n">box</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate the pairwise distances between sets of atoms in a box with periodic boundary conditions.</span>
 
@@ -1476,6 +1491,7 @@ lag_array : np.ndarray or list
 
         <p>convert the dump file to lammps structure file</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/lmp/tools_lammps.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1069</span>
@@ -1499,7 +1515,7 @@ lag_array : np.ndarray or list
 <span class="normal">1087</span>
 <span class="normal">1088</span>
 <span class="normal">1089</span>
-<span class="normal">1090</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">dump2str</span><span class="p">(</span><span class="n">save_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="normal">1090</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">dump2str</span><span class="p">(</span><span class="n">save_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
              <span class="n">dump_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
              <span class="n">sample_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
              <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span> <span class="ow">or</span> <span class="nb">list</span><span class="p">):</span>
@@ -1540,6 +1556,7 @@ lag_array : np.ndarray or list
 
         <p>input: dump_file
 output: frame, t_list, L_list</p>
+
 
             <details class="quote">
               <summary>Source code in <code>m2dtools/lmp/tools_lammps.py</code></summary>
@@ -1592,7 +1609,7 @@ output: frame, t_list, L_list</p>
 <span class="normal">439</span>
 <span class="normal">440</span>
 <span class="normal">441</span>
-<span class="normal">442</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">read_lammps_dump_custom</span><span class="p">(</span><span class="n">dump_file</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="normal">442</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">read_lammps_dump_custom</span><span class="p">(</span><span class="n">dump_file</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    input: dump_file</span>
 <span class="sd">    output: frame, t_list, L_list</span>
@@ -1669,6 +1686,7 @@ return:
     data_list: list
         list of dataframes</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/lmp/tools_lammps.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1034</span>
@@ -1703,7 +1721,7 @@ return:
 <span class="normal">1063</span>
 <span class="normal">1064</span>
 <span class="normal">1065</span>
-<span class="normal">1066</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">read_log_lammps</span><span class="p">(</span><span class="n">logfile</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="normal">1066</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">read_log_lammps</span><span class="p">(</span><span class="n">logfile</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    read the log file and return the list of dataframes</span>
 <span class="sd">    parameters:</span>
@@ -1756,6 +1774,7 @@ return:
         <p>input: file_name, key_words
 output: r, e_pot, f_pot</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/lmp/tools_lammps.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1007</span>
@@ -1782,7 +1801,7 @@ output: r, e_pot, f_pot</p>
 <span class="normal">1028</span>
 <span class="normal">1029</span>
 <span class="normal">1030</span>
-<span class="normal">1031</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">read_table_pot</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">key_words</span><span class="p">):</span>
+<span class="normal">1031</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">read_table_pot</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">key_words</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    input: file_name, key_words</span>
 <span class="sd">    output: r, e_pot, f_pot</span>
@@ -1826,6 +1845,7 @@ output: r, e_pot, f_pot</p>
 
         <p>wrap the molecule in the box, make sure the atoms in the same mol are in the same image</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/lmp/tools_lammps.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1093</span>
@@ -1850,7 +1870,7 @@ output: r, e_pot, f_pot</p>
 <span class="normal">1112</span>
 <span class="normal">1113</span>
 <span class="normal">1114</span>
-<span class="normal">1115</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">wrap_mol</span><span class="p">(</span><span class="n">save_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="normal">1115</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">wrap_mol</span><span class="p">(</span><span class="n">save_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
              <span class="n">input_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    wrap the molecule in the box, make sure the atoms in the same mol are in the same image</span>
@@ -1894,6 +1914,7 @@ output: r, e_pot, f_pot</p>
 lmp_tmp is a an instance of lammps class with full attributes,
 must contain natoms, natom_types, x, y, z, atom_info, mass, pair_coeff
 optionally contain</p>
+
 
             <details class="quote">
               <summary>Source code in <code>m2dtools/lmp/tools_lammps.py</code></summary>
@@ -2028,7 +2049,7 @@ optionally contain</p>
 <span class="normal">138</span>
 <span class="normal">139</span>
 <span class="normal">140</span>
-<span class="normal">141</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">write_lammps</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">lmp_tmp</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">):</span>
+<span class="normal">141</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">write_lammps</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">lmp_tmp</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    input: file_name,lmp_tmp</span>
 <span class="sd">    lmp_tmp is a an instance of lammps class with full attributes,</span>
@@ -2180,6 +2201,7 @@ optionally contain</p>
         <p>input: file_name,lmp_tmp
 lmp_tmp is a class of lammps with atomic attributes,</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/lmp/tools_lammps.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">144</span>
@@ -2213,7 +2235,7 @@ lmp_tmp is a class of lammps with atomic attributes,</p>
 <span class="normal">172</span>
 <span class="normal">173</span>
 <span class="normal">174</span>
-<span class="normal">175</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">write_lammps_atomic</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">lmp_tmp</span><span class="p">):</span>
+<span class="normal">175</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">write_lammps_atomic</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">lmp_tmp</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    input: file_name,lmp_tmp</span>
 <span class="sd">    lmp_tmp is a class of lammps with atomic attributes,</span>
@@ -2265,6 +2287,7 @@ lmp_tmp is a class of lammps with atomic attributes,</p>
         <p>input: file_name, frame, t_list, L_list
 output: write the frame, t_list, L_list to file_name</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/lmp/tools_lammps.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">445</span>
@@ -2294,7 +2317,7 @@ output: write the frame, t_list, L_list to file_name</p>
 <span class="normal">469</span>
 <span class="normal">470</span>
 <span class="normal">471</span>
-<span class="normal">472</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">write_lammps_dump_custom</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">t_list</span><span class="p">,</span> <span class="n">L_list</span><span class="p">):</span>
+<span class="normal">472</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">write_lammps_dump_custom</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">t_list</span><span class="p">,</span> <span class="n">L_list</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    input: file_name, frame, t_list, L_list</span>
 <span class="sd">    output: write the frame, t_list, L_list to file_name</span>

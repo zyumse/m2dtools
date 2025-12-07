@@ -768,7 +768,15 @@
 
 
 
+
+
+
+
+
+
+
   <div class="doc doc-children">
+
 
 
 
@@ -791,6 +799,7 @@
 
         <p>return r2 and MSE</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/other/common.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">238</span>
@@ -809,7 +818,7 @@
 <span class="normal">251</span>
 <span class="normal">252</span>
 <span class="normal">253</span>
-<span class="normal">254</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">evaluate_linear_fit_np</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="normal">254</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">evaluate_linear_fit_np</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    return r2 and MSE </span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -846,6 +855,7 @@
         <p>only one type of particles
 inputs: box,natom,type_atom,coors,r_cutoff=10,delta_r = 0.01
 outputs: R,g1,Q,S1</p>
+
 
             <details class="quote">
               <summary>Source code in <code>m2dtools/other/common.py</code></summary>
@@ -884,7 +894,7 @@ outputs: R,g1,Q,S1</p>
 <span class="normal">149</span>
 <span class="normal">150</span>
 <span class="normal">151</span>
-<span class="normal">152</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">pdf_sq_1type</span><span class="p">(</span><span class="n">box</span><span class="p">,</span> <span class="n">natom</span><span class="p">,</span> <span class="n">type_atom</span><span class="p">,</span> <span class="n">coors</span><span class="p">,</span> <span class="n">r_cutoff</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">delta_r</span><span class="o">=</span><span class="mf">0.01</span><span class="p">):</span>
+<span class="normal">152</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">pdf_sq_1type</span><span class="p">(</span><span class="n">box</span><span class="p">,</span> <span class="n">natom</span><span class="p">,</span> <span class="n">type_atom</span><span class="p">,</span> <span class="n">coors</span><span class="p">,</span> <span class="n">r_cutoff</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">delta_r</span><span class="o">=</span><span class="mf">0.01</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    only one type of particles</span>
 <span class="sd">    inputs: box,natom,type_atom,coors,r_cutoff=10,delta_r = 0.01</span>
@@ -942,6 +952,7 @@ at this moment, only 'C' is applied
 input: file_name
 outputs: box,a_type,num_type,coors</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/other/common.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">49</span>
@@ -982,7 +993,7 @@ outputs: box,a_type,num_type,coors</p>
 <span class="normal">84</span>
 <span class="normal">85</span>
 <span class="normal">86</span>
-<span class="normal">87</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">read_pos</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span>
+<span class="normal">87</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">read_pos</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    read POSCAR format structure file for VASP calculations</span>
 <span class="sd">    at this moment, only &#39;C&#39; is applied</span>
@@ -1043,6 +1054,7 @@ outputs: box,a_type,num_type,coors</p>
 :param old_string: The string to be replaced.
 :param new_string: The new string that will replace old_string.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/other/common.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">178</span>
@@ -1067,7 +1079,7 @@ outputs: box,a_type,num_type,coors</p>
 <span class="normal">197</span>
 <span class="normal">198</span>
 <span class="normal">199</span>
-<span class="normal">200</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">replace_in_file</span><span class="p">(</span><span class="n">file_path_old</span><span class="p">,</span> <span class="n">file_path_new</span><span class="p">,</span> <span class="n">old_string</span><span class="p">,</span> <span class="n">new_string</span><span class="p">):</span>
+<span class="normal">200</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">replace_in_file</span><span class="p">(</span><span class="n">file_path_old</span><span class="p">,</span> <span class="n">file_path_new</span><span class="p">,</span> <span class="n">old_string</span><span class="p">,</span> <span class="n">new_string</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Replace all occurrences of old_string with new_string in the file at file_path.</span>
 
@@ -1109,6 +1121,7 @@ outputs: box,a_type,num_type,coors</p>
 
         <p>at this moment, only for orthogonal cell</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/other/common.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 9</span>
@@ -1138,7 +1151,7 @@ outputs: box,a_type,num_type,coors</p>
 <span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span>
-<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">supercell</span><span class="p">(</span><span class="n">natoms</span><span class="p">,</span> <span class="n">box0</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">,</span> <span class="n">nz</span><span class="p">,</span> <span class="n">index0</span><span class="p">,</span> <span class="n">atom_type0</span><span class="p">,</span> <span class="n">coors0</span><span class="p">):</span>
+<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">supercell</span><span class="p">(</span><span class="n">natoms</span><span class="p">,</span> <span class="n">box0</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">,</span> <span class="n">nz</span><span class="p">,</span> <span class="n">index0</span><span class="p">,</span> <span class="n">atom_type0</span><span class="p">,</span> <span class="n">coors0</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    at this moment, only for orthogonal cell</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1186,6 +1199,7 @@ outputs: box,a_type,num_type,coors</p>
         <p>write POSCAR format structure file for VASP calculations
 input: file_name,box,a_type,num_type,coors</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/other/common.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 90</span>
@@ -1212,7 +1226,7 @@ input: file_name,box,a_type,num_type,coors</p>
 <span class="normal">111</span>
 <span class="normal">112</span>
 <span class="normal">113</span>
-<span class="normal">114</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">write_pos</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">box</span><span class="p">,</span> <span class="n">a_type</span><span class="p">,</span> <span class="n">num_type</span><span class="p">,</span> <span class="n">coors</span><span class="p">):</span>
+<span class="normal">114</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">write_pos</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">box</span><span class="p">,</span> <span class="n">a_type</span><span class="p">,</span> <span class="n">num_type</span><span class="p">,</span> <span class="n">coors</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    write POSCAR format structure file for VASP calculations</span>
 <span class="sd">    input: file_name,box,a_type,num_type,coors</span>
@@ -1261,6 +1275,7 @@ input: file_name,box,a_type,num_type,coors</p>
 - filename (str): Path to the output XYZ file.
 - comment (str): A comment for the second line of the XYZ file.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/other/common.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">220</span>
@@ -1278,7 +1293,7 @@ input: file_name,box,a_type,num_type,coors</p>
 <span class="normal">232</span>
 <span class="normal">233</span>
 <span class="normal">234</span>
-<span class="normal">235</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">write_xyz_file</span><span class="p">(</span><span class="n">atom_types</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="normal">235</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">write_xyz_file</span><span class="p">(</span><span class="n">atom_types</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Write an XYZ file from atom types and coordinates.</span>
 
@@ -1319,7 +1334,15 @@ input: file_name,box,a_type,num_type,coors</p>
 
 
 
+
+
+
+
+
+
+
   <div class="doc doc-children">
+
 
 
 
@@ -1341,6 +1364,7 @@ input: file_name,box,a_type,num_type,coors</p>
     <div class="doc doc-contents ">
 
         <p>Convert .gro to POSCAR</p>
+
 
             <details class="quote">
               <summary>Source code in <code>m2dtools/other/tools_gro.py</code></summary>
@@ -1375,7 +1399,7 @@ input: file_name,box,a_type,num_type,coors</p>
 <span class="normal">132</span>
 <span class="normal">133</span>
 <span class="normal">134</span>
-<span class="normal">135</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">gro2pos</span><span class="p">(</span><span class="n">posfile</span><span class="p">,</span> <span class="n">grofile</span><span class="p">):</span>
+<span class="normal">135</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">gro2pos</span><span class="p">(</span><span class="n">posfile</span><span class="p">,</span> <span class="n">grofile</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert .gro to POSCAR &quot;&quot;&quot;</span>
     <span class="n">box</span><span class="p">,</span> <span class="n">natom</span><span class="p">,</span> <span class="n">type_atom</span><span class="p">,</span> <span class="n">coors0</span> <span class="o">=</span> <span class="n">read_gro</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">grofile</span><span class="p">))</span>
 
@@ -1426,6 +1450,7 @@ input: file_name,box,a_type,num_type,coors</p>
 
         <p>return box,natom,type_atom,coors</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/other/tools_gro.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">12</span>
@@ -1452,7 +1477,7 @@ input: file_name,box,a_type,num_type,coors</p>
 <span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span>
-<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">read_gro</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span>
+<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">read_gro</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;return box,natom,type_atom,coors&quot;&quot;&quot;</span>
     <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
     <span class="n">lf</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
@@ -1496,6 +1521,7 @@ input: file_name,box,a_type,num_type,coors</p>
 
         <p>read multiple frames in one gro file,
 return a list, in which each element contains box, natom, type_atom, coors</p>
+
 
             <details class="quote">
               <summary>Source code in <code>m2dtools/other/tools_gro.py</code></summary>
@@ -1547,7 +1573,7 @@ return a list, in which each element contains box, natom, type_atom, coors</p>
 <span class="normal"> 98</span>
 <span class="normal"> 99</span>
 <span class="normal">100</span>
-<span class="normal">101</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">read_gro_multi</span><span class="p">(</span><span class="n">gro_file</span><span class="p">):</span>
+<span class="normal">101</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">read_gro_multi</span><span class="p">(</span><span class="n">gro_file</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    read multiple frames in one gro file,</span>
 <span class="sd">    return a list, in which each element contains box, natom, type_atom, coors</span>
@@ -1563,7 +1589,7 @@ return a list, in which each element contains box, natom, type_atom, coors</p>
             <span class="n">lt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">il</span><span class="p">)</span>
             <span class="n">t</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lft</span><span class="p">[</span><span class="n">il</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">2</span><span class="p">])</span>
 
-    <span class="k">def</span> <span class="nf">read_lf</span><span class="p">(</span><span class="n">lf</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">read_lf</span><span class="p">(</span><span class="n">lf</span><span class="p">):</span>
         <span class="n">len1</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">lf</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">len2</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">lf</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">len3</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">lf</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">2</span><span class="p">])</span>
@@ -1615,6 +1641,7 @@ return a list, in which each element contains box, natom, type_atom, coors</p>
 
         <p>Input:filename,box,natom,type_atom,coors</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/other/tools_gro.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">39</span>
@@ -1628,7 +1655,7 @@ return a list, in which each element contains box, natom, type_atom, coors</p>
 <span class="normal">47</span>
 <span class="normal">48</span>
 <span class="normal">49</span>
-<span class="normal">50</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">write_gro</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">box</span><span class="p">,</span> <span class="n">natom</span><span class="p">,</span> <span class="n">type_atom</span><span class="p">,</span> <span class="n">coors</span><span class="p">):</span>
+<span class="normal">50</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">write_gro</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">box</span><span class="p">,</span> <span class="n">natom</span><span class="p">,</span> <span class="n">type_atom</span><span class="p">,</span> <span class="n">coors</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Input:filename,box,natom,type_atom,coors&quot;&quot;&quot;</span>
     <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">.gro&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
     <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;SiO2</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
