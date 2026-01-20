@@ -20,6 +20,7 @@ dependencies = [
 license = { file = "LICENSE" }
 
 [tool.setuptools]
+packages = ["m2dtools"]
 license-files = []
 
 [project.urls]
