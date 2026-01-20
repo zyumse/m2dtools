@@ -13,9 +13,12 @@ nav:
   - Home: index.md
   - Quick Start: quickstart.md
   - Functions:
-      - basic: references/basic.md
-      - lmp: references/lmp.md
+      - Lammps: references/lmp.md
+      - Basic:
+        - Structure: references/basic/structure.md
+        - Dynamics: references/basic/dynamics.md
+        - Basic: references/basic/basic.md
       # - cg: references/cg.md
       # - network: reference/network.md
-      - other: references/other.md
+      - Other: references/other.md
 
