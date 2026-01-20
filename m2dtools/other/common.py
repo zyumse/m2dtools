@@ -4,6 +4,7 @@ A collection of common functions for basic MD process: supercell, read and write
 
 import sys
 import numpy as np
+import re
 
 
 def supercell(natoms, box0, nx, ny, nz, index0, atom_type0, coors0):
@@ -252,3 +253,45 @@ def evaluate_linear_fit_np(x, y):
     r2 = 1 - (ss_res / ss_tot)
 
     return r2, np.sqrt(ss_res)
+
+
+def read_xyz_simple(filename):
+    """
+    Read an extended XYZ file.
+    Returns:
+        types  : (N,) array of strings
+        coords : (N,3) float array
+        lattice: (3,3) float array  (box matrix)
+    """
+    with open(filename, "r") as f:
+        # --- first line: number of atoms ---
+        natoms = int(f.readline().strip())
+
+        # --- second line: comment, possibly containing Lattice="..." ---
+        comment = f.readline().strip()
+
+        # --- parse Lattice="..." if present ---
+        lattice = np.eye(3)
+        m = re.search(r'Lattice="([^"]+)"', comment)
+        if m:
+            nums = list(map(float, m.group(1).split()))
+            if len(nums) != 9:
+                raise ValueError("Lattice must contain 9 numbers.")
+            lattice = np.array(nums).reshape(3, 3)
+
+        # --- read atoms ---
+        types = []
+        coords = []
+        for _ in range(natoms):
+            line = f.readline().strip()
+            if not line:
+                raise ValueError("Unexpected EOF while reading atoms.")
+
+            parts = line.split()
+            if len(parts) < 4:
+                continue
+
+            types.append(parts[0])
+            coords.append([float(parts[1]), float(parts[2]), float(parts[3])])
+
+    return np.array(types), np.array(coords, float), lattice

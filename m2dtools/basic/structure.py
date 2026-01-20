@@ -6,6 +6,8 @@ species.
 """
 
 import numpy as np
+import time
+from scipy.spatial import cKDTree
 
 
 def compute_bond_length(coors, bonded_atoms, box_size):
@@ -144,6 +146,56 @@ def pdf_sq_cross_mask(box, coors1, coors2,  mask_matrix, r_cutoff:float=10, delt
 
     return R, g1, Q, S1
 
+
+def pdf_sq_cross_mask_large(
+    box,
+    coors1,
+    coors2,
+    mask_matrix,
+    r_cutoff: float = 10.0,
+    delta_r: float = 0.01,
+):
+
+    t0 = time.time()
+    n1, n2 = len(coors1), len(coors2)
+
+    # box lengths (orthorhombic)
+    box_lengths = np.linalg.norm(box, axis=1)
+
+    # build tree
+    tree = cKDTree(
+        coors2,
+        boxsize=box_lengths 
+    )
+
+    # neighbor search
+    pairs = tree.query_ball_point(coors1, r_cutoff)
+
+    # collect distances
+    distances = []
+    for i, js in enumerate(pairs):
+        if not js:
+            continue
+        for j in js:
+            if mask_matrix[i, j]:
+                d = coors1[i] - coors2[j]
+                d -= box_lengths * np.rint(d / box_lengths)
+                distances.append(np.linalg.norm(d))
+
+    distances = np.asarray(distances)
+
+    # --- PDF ---
+    r_edges = np.arange(delta_r, r_cutoff + delta_r, delta_r)
+    r_centers = 0.5 * (r_edges[1:] + r_edges[:-1])
+
+    V = np.dot(np.cross(box[1], box[2]), box[0])
+    rho1, rho2 = n1 / V, n2 / V
+    norm = rho1 * rho2 * V
+    hist, _ = np.histogram(distances, bins=r_edges)
+    g1 = hist / (4 * np.pi * r_centers**2 * delta_r * norm)
+
+    print(f"KD-tree PDF time: {time.time() - t0:.2f} s")
+    return r_centers, g1, None, None
 
 def pdf_sq_cross(box, coors1, coors2,  bond_atom_idx, r_cutoff:float=10, delta_r:float=0.01):
     """Calculate PDF and SQ between two particle sets.
