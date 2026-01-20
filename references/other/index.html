@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://zyumse.github.io/m2dtools/references/other/">
       
       
-        <link rel="prev" href="../basic/basic/">
+        <link rel="prev" href="../lmp/">
       
       
       
@@ -23,7 +23,7 @@
     
     
       
-        <title>Other - m2dtools</title>
+        <title>other - m2dtools</title>
       
     
     
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Other
+              other
             
           </span>
         </div>
@@ -301,6 +301,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../basic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    basic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../lmp/" class="md-nav__link">
         
   
@@ -308,7 +336,7 @@
   <span class="md-ellipsis">
     
   
-    Lammps
+    lmp
   
 
     
@@ -317,145 +345,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Basic
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Basic
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../basic/structure/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Structure
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../basic/dynamics/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Dynamics
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../basic/basic/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Basic
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -482,7 +371,7 @@
   <span class="md-ellipsis">
     
   
-    Other
+    other
   
 
     
@@ -500,7 +389,7 @@
   <span class="md-ellipsis">
     
   
-    Other
+    other
   
 
     
@@ -1504,7 +1393,7 @@
 
 
 
-  <h1>Other</h1>
+  <h1>other</h1>
 
 <div class="doc doc-object doc-module">
 
@@ -1517,7 +1406,15 @@
 
 
 
+
+
+
+
+
+
+
   <div class="doc doc-children">
+
 
 
 
@@ -1548,6 +1445,7 @@ y : numpy.ndarray
 <p>tuple[float, float]
     Coefficient of determination (R^2) and mean squared error.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/other/common.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">319</span>
@@ -1577,7 +1475,7 @@ y : numpy.ndarray
 <span class="normal">343</span>
 <span class="normal">344</span>
 <span class="normal">345</span>
-<span class="normal">346</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">evaluate_linear_fit_np</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="normal">346</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">evaluate_linear_fit_np</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Evaluate a simple linear fit.</span>
 
 <span class="sd">    Parameters</span>
@@ -1641,6 +1539,7 @@ delta_r : float, default 0.01
     Radial positions, pair distribution function, q values and structure
     factor for the single-species system.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/other/common.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">160</span>
@@ -1696,7 +1595,7 @@ delta_r : float, default 0.01
 <span class="normal">210</span>
 <span class="normal">211</span>
 <span class="normal">212</span>
-<span class="normal">213</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">pdf_sq_1type</span><span class="p">(</span><span class="n">box</span><span class="p">,</span> <span class="n">natom</span><span class="p">,</span> <span class="n">type_atom</span><span class="p">,</span> <span class="n">coors</span><span class="p">,</span> <span class="n">r_cutoff</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">delta_r</span><span class="o">=</span><span class="mf">0.01</span><span class="p">):</span>
+<span class="normal">213</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">pdf_sq_1type</span><span class="p">(</span><span class="n">box</span><span class="p">,</span> <span class="n">natom</span><span class="p">,</span> <span class="n">type_atom</span><span class="p">,</span> <span class="n">coors</span><span class="p">,</span> <span class="n">r_cutoff</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">delta_r</span><span class="o">=</span><span class="mf">0.01</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute pair distribution and structure factors for a single species.</span>
 
 <span class="sd">    Parameters</span>
@@ -1775,6 +1674,7 @@ delta_r : float, default 0.01
 <p>tuple[numpy.ndarray, numpy.ndarray, numpy.ndarray, numpy.ndarray]
     Box matrix, atomic species, species counts and Cartesian coordinates.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/other/common.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 70</span>
@@ -1821,7 +1721,7 @@ delta_r : float, default 0.01
 <span class="normal">111</span>
 <span class="normal">112</span>
 <span class="normal">113</span>
-<span class="normal">114</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">read_pos</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span>
+<span class="normal">114</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">read_pos</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read a VASP POSCAR structure.</span>
 
 <span class="sd">    Parameters</span>
@@ -1889,6 +1789,7 @@ Returns:
     coords : (N,3) float array
     lattice: (3,3) float array  (box matrix)</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/other/common.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">349</span>
@@ -1930,7 +1831,7 @@ Returns:
 <span class="normal">385</span>
 <span class="normal">386</span>
 <span class="normal">387</span>
-<span class="normal">388</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">read_xyz_simple</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="normal">388</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">read_xyz_simple</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Read an extended XYZ file.</span>
 <span class="sd">    Returns:</span>
@@ -2001,6 +1902,7 @@ new_string : str
 <p>None
     Writes <code>file_path_new</code> with updated contents.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/other/common.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">239</span>
@@ -2036,7 +1938,7 @@ new_string : str
 <span class="normal">269</span>
 <span class="normal">270</span>
 <span class="normal">271</span>
-<span class="normal">272</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">replace_in_file</span><span class="p">(</span><span class="n">file_path_old</span><span class="p">,</span> <span class="n">file_path_new</span><span class="p">,</span> <span class="n">old_string</span><span class="p">,</span> <span class="n">new_string</span><span class="p">):</span>
+<span class="normal">272</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">replace_in_file</span><span class="p">(</span><span class="n">file_path_old</span><span class="p">,</span> <span class="n">file_path_new</span><span class="p">,</span> <span class="n">old_string</span><span class="p">,</span> <span class="n">new_string</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Replace text within a file and write the updated copy.</span>
 
 <span class="sd">    Parameters</span>
@@ -2106,6 +2008,7 @@ coors0 : numpy.ndarray
     <code>(natoms_new, box_new, index_new, atom_type_new, coors_new)</code> for the
     replicated supercell.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/other/common.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">10</span>
@@ -2155,7 +2058,7 @@ coors0 : numpy.ndarray
 <span class="normal">54</span>
 <span class="normal">55</span>
 <span class="normal">56</span>
-<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">supercell</span><span class="p">(</span><span class="n">natoms</span><span class="p">,</span> <span class="n">box0</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">,</span> <span class="n">nz</span><span class="p">,</span> <span class="n">index0</span><span class="p">,</span> <span class="n">atom_type0</span><span class="p">,</span> <span class="n">coors0</span><span class="p">):</span>
+<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">supercell</span><span class="p">(</span><span class="n">natoms</span><span class="p">,</span> <span class="n">box0</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">,</span> <span class="n">nz</span><span class="p">,</span> <span class="n">index0</span><span class="p">,</span> <span class="n">atom_type0</span><span class="p">,</span> <span class="n">coors0</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Build a replicated supercell from an orthogonal unit cell.</span>
 
 <span class="sd">    Parameters</span>
@@ -2236,6 +2139,7 @@ coors : numpy.ndarray
 <p>None
     The POSCAR file is written to <code>file_name</code>.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/other/common.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">117</span>
@@ -2278,7 +2182,7 @@ coors : numpy.ndarray
 <span class="normal">154</span>
 <span class="normal">155</span>
 <span class="normal">156</span>
-<span class="normal">157</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">write_pos</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">box</span><span class="p">,</span> <span class="n">a_type</span><span class="p">,</span> <span class="n">num_type</span><span class="p">,</span> <span class="n">coors</span><span class="p">):</span>
+<span class="normal">157</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">write_pos</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">box</span><span class="p">,</span> <span class="n">a_type</span><span class="p">,</span> <span class="n">num_type</span><span class="p">,</span> <span class="n">coors</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Write a VASP POSCAR structure.</span>
 
 <span class="sd">    Parameters</span>
@@ -2350,6 +2254,7 @@ comment : str, default ""
 <p>None
     The XYZ file is written to <code>filename</code>.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/other/common.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">292</span>
@@ -2376,7 +2281,7 @@ comment : str, default ""
 <span class="normal">313</span>
 <span class="normal">314</span>
 <span class="normal">315</span>
-<span class="normal">316</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">write_xyz_file</span><span class="p">(</span><span class="n">atom_types</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="normal">316</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">write_xyz_file</span><span class="p">(</span><span class="n">atom_types</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Write an XYZ file from atom types and coordinates.</span>
 
 <span class="sd">    Parameters</span>
@@ -2426,7 +2331,15 @@ comment : str, default ""
 
 
 
+
+
+
+
+
+
+
   <div class="doc doc-children">
+
 
 
 
@@ -2456,6 +2369,7 @@ grofile : str
 <h4 id="m2dtools.other.tools_gro.gro2pos--returns">Returns</h4>
 <p>None
     Writes the POSCAR representation to <code>posfile</code>.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>m2dtools/other/tools_gro.py</code></summary>
@@ -2503,7 +2417,7 @@ grofile : str
 <span class="normal">184</span>
 <span class="normal">185</span>
 <span class="normal">186</span>
-<span class="normal">187</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">gro2pos</span><span class="p">(</span><span class="n">posfile</span><span class="p">,</span> <span class="n">grofile</span><span class="p">):</span>
+<span class="normal">187</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">gro2pos</span><span class="p">(</span><span class="n">posfile</span><span class="p">,</span> <span class="n">grofile</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a ``.gro`` file to a POSCAR structure.</span>
 
 <span class="sd">    Parameters</span>
@@ -2573,6 +2487,7 @@ grofile : str
 <p>tuple[numpy.ndarray, int, numpy.ndarray, numpy.ndarray]
     Box matrix, atom count, atom types and coordinates.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/other/tools_gro.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">12</span>
@@ -2610,7 +2525,7 @@ grofile : str
 <span class="normal">44</span>
 <span class="normal">45</span>
 <span class="normal">46</span>
-<span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">read_gro</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span>
+<span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">read_gro</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read a GROMACS ``.gro`` file.</span>
 
 <span class="sd">    Parameters</span>
@@ -2672,6 +2587,7 @@ grofile : str
     List of frame tuples <code>(box, natom, type_atom, coors)</code> and the
     corresponding timestep labels.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/other/tools_gro.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 83</span>
@@ -2731,7 +2647,7 @@ grofile : str
 <span class="normal">137</span>
 <span class="normal">138</span>
 <span class="normal">139</span>
-<span class="normal">140</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">read_gro_multi</span><span class="p">(</span><span class="n">gro_file</span><span class="p">):</span>
+<span class="normal">140</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">read_gro_multi</span><span class="p">(</span><span class="n">gro_file</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read multiple frames from a concatenated ``.gro`` file.</span>
 
 <span class="sd">    Parameters</span>
@@ -2756,7 +2672,7 @@ grofile : str
             <span class="n">lt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">il</span><span class="p">)</span>
             <span class="n">t</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lft</span><span class="p">[</span><span class="n">il</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">2</span><span class="p">])</span>
 
-    <span class="k">def</span> <span class="nf">read_lf</span><span class="p">(</span><span class="n">lf</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">read_lf</span><span class="p">(</span><span class="n">lf</span><span class="p">):</span>
         <span class="n">len1</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">lf</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">len2</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">lf</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">len3</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">lf</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">2</span><span class="p">])</span>
@@ -2822,6 +2738,7 @@ coors : numpy.ndarray
 <p>None
     Writes <code>filename.gro</code> to disk.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>m2dtools/other/tools_gro.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">50</span>
@@ -2854,7 +2771,7 @@ coors : numpy.ndarray
 <span class="normal">77</span>
 <span class="normal">78</span>
 <span class="normal">79</span>
-<span class="normal">80</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">write_gro</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">box</span><span class="p">,</span> <span class="n">natom</span><span class="p">,</span> <span class="n">type_atom</span><span class="p">,</span> <span class="n">coors</span><span class="p">):</span>
+<span class="normal">80</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">write_gro</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">box</span><span class="p">,</span> <span class="n">natom</span><span class="p">,</span> <span class="n">type_atom</span><span class="p">,</span> <span class="n">coors</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Write a GROMACS ``.gro`` file.</span>
 
 <span class="sd">    Parameters</span>
