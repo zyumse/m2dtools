@@ -158,22 +158,29 @@ def pdf_sq_cross_mask_large(
     """
     Compute the masked cross radial distribution function (pair distribution function) g(r)
     between two coordinate sets using a periodic KD-tree neighbor search, optimized for large systems.
+
     Parameters
     ----------
     box : array_like, shape (3, 3)
         Simulation cell vectors. Assumed orthorhombic in practice; periodic wrapping is
         applied using the per-axis box lengths derived from the row norms.
+
     coors1 : array_like, shape (n1, 3)
         Cartesian coordinates of species/set 1.
+
     coors2 : array_like, shape (n2, 3)
         Cartesian coordinates of species/set 2 (used to build the KD-tree).
+
     mask_matrix : array_like, shape (n1, n2)
         Boolean (or 0/1) mask selecting which (i, j) pairs are included in the RDF.
         Only distances for which `mask_matrix[i, j]` is truthy contribute to the histogram.
+
     r_cutoff : float, default=10.0
         Cutoff radius (in the same units as coordinates) for neighbor search and RDF.
+
     delta_r : float, default=0.01
         Bin width for the radial histogram.
+
     Returns
     -------
     r_centers : numpy.ndarray
