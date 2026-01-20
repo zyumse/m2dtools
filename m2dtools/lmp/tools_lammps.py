@@ -716,6 +716,23 @@ def compute_mappings(file_lmp, file_key):
 
 
 def convert_lmp(file_lmp, file_key, mapping_dict):
+    """
+    Convert LAMMPS data file using the provided mapping dictionary.
+
+    Parameters
+    ----------
+    file_lmp : str
+        Path to the original LAMMPS data file.
+    file_key : str
+        Path to the key file for atom types.
+    mapping_dict : dict
+        Dictionary containing mapping information for bonds, angles, dihedrals, and masses.
+
+    Returns
+    -------
+    lmp: object
+        Converted LAMMPS object.
+    """
 
     lmp_react1 = read_lammps_full(file_lmp)
     tmp = pd.read_table(file_key,
@@ -792,8 +809,7 @@ def convert_lmp(file_lmp, file_key, mapping_dict):
         dihedral_info_new[i, 1] = 0
         match = 0
         for j in range(len(mapping_dict['mapping_dihedrals'])):
-            if ((dihedral_info_new[i, 2] == mapping_dict['mapping_dihedrals'][j, 0]) and (dihedral_info_new[i, 3] == mapping_dict['mapping_dihedrals'][j, 1]) and (dihedral_info_new[i, 4] == mapping_dict['mapping_dihedrals'][j, 2]) and (dihedral_info_new[i, 5] == mapping_dict['mapping_dihedrals'][j, 3])) or ((dihedral_info_new[i, 2] == mapping_dict['mapping_dihedrals'][j, 3]) and (dihedral_info_new[i, 3] == mapping_dict['mapping_dihedrals'][j, 2])
-                                                                                                                                                                                                                                                                                                                     and (dihedral_info_new[i, 4] == mapping_dict['mapping_dihedrals'][j, 1]) and (dihedral_info_new[i, 5] == mapping_dict['mapping_dihedrals'][j, 0])):
+            if ((dihedral_info_new[i, 2] == mapping_dict['mapping_dihedrals'][j, 0]) and (dihedral_info_new[i, 3] == mapping_dict['mapping_dihedrals'][j, 1]) and (dihedral_info_new[i, 4] == mapping_dict['mapping_dihedrals'][j, 2]) and (dihedral_info_new[i, 5] == mapping_dict['mapping_dihedrals'][j, 3])) or ((dihedral_info_new[i, 2] == mapping_dict['mapping_dihedrals'][j, 3]) and (dihedral_info_new[i, 3] == mapping_dict['mapping_dihedrals'][j, 2]) and (dihedral_info_new[i, 4] == mapping_dict['mapping_dihedrals'][j, 1]) and (dihedral_info_new[i, 5] == mapping_dict['mapping_dihedrals'][j, 0])):
                 dihedral_info_new[i, 2] = lmp_react1.dihedral_info[i, 2]
                 dihedral_info_new[i, 3] = lmp_react1.dihedral_info[i, 3]
                 dihedral_info_new[i, 4] = lmp_react1.dihedral_info[i, 4]
