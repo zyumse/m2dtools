@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://zyumse.github.io/m2dtools/references/lmp/">
       
       
+        <link rel="prev" href="../../quickstart/">
+      
+      
+        <link rel="next" href="../basic/structure/">
       
       
         
@@ -21,7 +25,7 @@
     
     
       
-        <title>Lmp - m2dtools</title>
+        <title>Lammps - m2dtools</title>
       
     
     
@@ -100,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Lmp
+              Lammps
             
           </span>
         </div>
@@ -247,18 +251,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -279,7 +285,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -289,6 +295,478 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lammps
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lammps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tools_lammps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.average_log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        average_log
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="average_log">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.average_log--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.average_log--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Returns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.distance_pbc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        distance_pbc
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="distance_pbc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.distance_pbc--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.distance_pbc--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Returns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.dump2str" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dump2str
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="dump2str">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.dump2str--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.dump2str--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Returns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.read_lammps_dump_custom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        read_lammps_dump_custom
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="read_lammps_dump_custom">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.read_lammps_dump_custom--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.read_lammps_dump_custom--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Returns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.read_log_lammps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        read_log_lammps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="read_log_lammps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.read_log_lammps--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.read_log_lammps--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Returns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.read_table_pot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        read_table_pot
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="read_table_pot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.read_table_pot--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.read_table_pot--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Returns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.wrap_mol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        wrap_mol
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="wrap_mol">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.wrap_mol--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.wrap_mol--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Returns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.write_lammps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        write_lammps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="write_lammps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.write_lammps--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.write_lammps--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Returns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.write_lammps_atomic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        write_lammps_atomic
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="write_lammps_atomic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.write_lammps_atomic--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.write_lammps_atomic--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Returns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.write_lammps_dump_custom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        write_lammps_dump_custom
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="write_lammps_dump_custom">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.write_lammps_dump_custom--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m2dtools.lmp.tools_lammps.write_lammps_dump_custom--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Returns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
             
               
                 
@@ -305,10 +783,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
         
           
-          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
             
   
   
@@ -326,8 +804,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_1">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -443,7 +921,7 @@
   <span class="md-ellipsis">
     
   
-    other
+    Other
   
 
     
@@ -906,7 +1384,7 @@
 
 
 
-  <h1>Lmp</h1>
+  <h1>Lammps</h1>
 
 <div class="doc doc-object doc-module">
 
