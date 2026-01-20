@@ -11,10 +11,10 @@
         <link rel="canonical" href="https://zyumse.github.io/m2dtools/references/lmp/">
       
       
-        <link rel="prev" href="../basic/">
+        <link rel="prev" href="../../quickstart/">
       
       
-        <link rel="next" href="../other/">
+        <link rel="next" href="../basic/structure/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>lmp - m2dtools</title>
+        <title>Lammps - m2dtools</title>
       
     
     
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              lmp
+              Lammps
             
           </span>
         </div>
@@ -300,34 +300,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../basic/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    basic
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -345,7 +317,7 @@
   <span class="md-ellipsis">
     
   
-    lmp
+    Lammps
   
 
     
@@ -363,7 +335,7 @@
   <span class="md-ellipsis">
     
   
-    lmp
+    Lammps
   
 
     
@@ -802,6 +774,145 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Basic
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic/structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic/dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dynamics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic/basic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../other/" class="md-nav__link">
         
@@ -810,7 +921,7 @@
   <span class="md-ellipsis">
     
   
-    other
+    Other
   
 
     
@@ -1273,7 +1384,7 @@
 
 
 
-  <h1>lmp</h1>
+  <h1>Lammps</h1>
 
 <div class="doc doc-object doc-module">
 
@@ -1286,15 +1397,7 @@
 
 
 
-
-
-
-
-
-
-
   <div class="doc doc-children">
-
 
 
 
@@ -1325,7 +1428,6 @@ freq : int, default 1
 <p>tuple[pandas.DataFrame, pandas.DataFrame]
     Data frames containing mean and standard deviation values.</p>
 
-
             <details class="quote">
               <summary>Source code in <code>m2dtools/lmp/tools_lammps.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1207</span>
@@ -1354,7 +1456,7 @@ freq : int, default 1
 <span class="normal">1230</span>
 <span class="normal">1231</span>
 <span class="normal">1232</span>
-<span class="normal">1233</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">average_log</span><span class="p">(</span><span class="n">log_files</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="normal">1233</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">average_log</span><span class="p">(</span><span class="n">log_files</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Average the log data from multiple files.</span>
 
 <span class="sd">    Parameters</span>
@@ -1410,7 +1512,6 @@ box : numpy.ndarray
 <p>numpy.ndarray
     Distance matrix of shape <code>(N, M)</code> between <code>coord1</code> and <code>coord2</code>.</p>
 
-
             <details class="quote">
               <summary>Source code in <code>m2dtools/lmp/tools_lammps.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">240</span>
@@ -1439,7 +1540,7 @@ box : numpy.ndarray
 <span class="normal">263</span>
 <span class="normal">264</span>
 <span class="normal">265</span>
-<span class="normal">266</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">distance_pbc</span><span class="p">(</span><span class="n">coord1</span><span class="p">,</span> <span class="n">coord2</span><span class="p">,</span> <span class="n">box</span><span class="p">):</span>
+<span class="normal">266</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">distance_pbc</span><span class="p">(</span><span class="n">coord1</span><span class="p">,</span> <span class="n">coord2</span><span class="p">,</span> <span class="n">box</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute pairwise distances under periodic boundary conditions.</span>
 
 <span class="sd">    Parameters</span>
@@ -1497,7 +1598,6 @@ idx : int or list[int]
 <p>None
     The converted structure is written to <code>save_file</code>.</p>
 
-
             <details class="quote">
               <summary>Source code in <code>m2dtools/lmp/tools_lammps.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1132</span>
@@ -1536,7 +1636,7 @@ idx : int or list[int]
 <span class="normal">1165</span>
 <span class="normal">1166</span>
 <span class="normal">1167</span>
-<span class="normal">1168</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">dump2str</span><span class="p">(</span><span class="n">save_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="normal">1168</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">dump2str</span><span class="p">(</span><span class="n">save_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
              <span class="n">dump_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
              <span class="n">sample_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
              <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span> <span class="ow">or</span> <span class="nb">list</span><span class="p">):</span>
@@ -1600,7 +1700,6 @@ interval : int, default 1
 <p>tuple[list[numpy.ndarray], list[int], list[numpy.ndarray]]
     Parsed coordinate frames, timesteps and box bounds for each frame.</p>
 
-
             <details class="quote">
               <summary>Source code in <code>m2dtools/lmp/tools_lammps.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">419</span>
@@ -1662,7 +1761,7 @@ interval : int, default 1
 <span class="normal">475</span>
 <span class="normal">476</span>
 <span class="normal">477</span>
-<span class="normal">478</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">read_lammps_dump_custom</span><span class="p">(</span><span class="n">dump_file</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="normal">478</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">read_lammps_dump_custom</span><span class="p">(</span><span class="n">dump_file</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read a LAMMPS ``dump custom`` trajectory.</span>
 
 <span class="sd">    Parameters</span>
@@ -1749,7 +1848,6 @@ freq : int, default 1
 <p>list[pandas.DataFrame]
     Thermodynamic blocks parsed from the log file.</p>
 
-
             <details class="quote">
               <summary>Source code in <code>m2dtools/lmp/tools_lammps.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1094</span>
@@ -1787,7 +1885,7 @@ freq : int, default 1
 <span class="normal">1126</span>
 <span class="normal">1127</span>
 <span class="normal">1128</span>
-<span class="normal">1129</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">read_log_lammps</span><span class="p">(</span><span class="n">logfile</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="normal">1129</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">read_log_lammps</span><span class="p">(</span><span class="n">logfile</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read a LAMMPS log file into per-block data frames.</span>
 
 <span class="sd">    Parameters</span>
@@ -1850,7 +1948,6 @@ key_words : str
 <p>tuple[list[float], list[float], list[float]]
     Radial positions, potential energies and forces from the table.</p>
 
-
             <details class="quote">
               <summary>Source code in <code>m2dtools/lmp/tools_lammps.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1057</span>
@@ -1887,7 +1984,7 @@ key_words : str
 <span class="normal">1088</span>
 <span class="normal">1089</span>
 <span class="normal">1090</span>
-<span class="normal">1091</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">read_table_pot</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">key_words</span><span class="p">):</span>
+<span class="normal">1091</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">read_table_pot</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">key_words</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read a LAMMPS table potential block.</span>
 
 <span class="sd">    Parameters</span>
@@ -1949,7 +2046,6 @@ input_file : str
 <p>None
     The wrapped structure is written with the <code>save_file</code> prefix.</p>
 
-
             <details class="quote">
               <summary>Source code in <code>m2dtools/lmp/tools_lammps.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1171</span>
@@ -1985,7 +2081,7 @@ input_file : str
 <span class="normal">1201</span>
 <span class="normal">1202</span>
 <span class="normal">1203</span>
-<span class="normal">1204</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">wrap_mol</span><span class="p">(</span><span class="n">save_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="normal">1204</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">wrap_mol</span><span class="p">(</span><span class="n">save_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
              <span class="n">input_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Wrap molecules into the primary box while preserving connectivity.</span>
 
@@ -2048,7 +2144,6 @@ mode : {"full", "atomic"}, default "full"
 <h4 id="m2dtools.lmp.tools_lammps.write_lammps--returns">Returns</h4>
 <p>None
     The data file is written to <code>file_name</code>.</p>
-
 
             <details class="quote">
               <summary>Source code in <code>m2dtools/lmp/tools_lammps.py</code></summary>
@@ -2194,7 +2289,7 @@ mode : {"full", "atomic"}, default "full"
 <span class="normal">149</span>
 <span class="normal">150</span>
 <span class="normal">151</span>
-<span class="normal">152</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">write_lammps</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">lmp_tmp</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">):</span>
+<span class="normal">152</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">write_lammps</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">lmp_tmp</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Write a LAMMPS data file from an in-memory structure.</span>
 
 <span class="sd">    Parameters</span>
@@ -2364,7 +2459,6 @@ lmp_tmp : lammps
 <p>None
     The data file is written to <code>file_name</code>.</p>
 
-
             <details class="quote">
               <summary>Source code in <code>m2dtools/lmp/tools_lammps.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">155</span>
@@ -2408,7 +2502,7 @@ lmp_tmp : lammps
 <span class="normal">193</span>
 <span class="normal">194</span>
 <span class="normal">195</span>
-<span class="normal">196</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">write_lammps_atomic</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">lmp_tmp</span><span class="p">):</span>
+<span class="normal">196</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">write_lammps_atomic</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">lmp_tmp</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Write an atomic-style LAMMPS data file.</span>
 
 <span class="sd">    Parameters</span>
@@ -2481,7 +2575,6 @@ L_list : list[numpy.ndarray]
 <p>None
     The combined dump is written to <code>file_name</code>.</p>
 
-
             <details class="quote">
               <summary>Source code in <code>m2dtools/lmp/tools_lammps.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">481</span>
@@ -2525,7 +2618,7 @@ L_list : list[numpy.ndarray]
 <span class="normal">519</span>
 <span class="normal">520</span>
 <span class="normal">521</span>
-<span class="normal">522</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">write_lammps_dump_custom</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">t_list</span><span class="p">,</span> <span class="n">L_list</span><span class="p">):</span>
+<span class="normal">522</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">write_lammps_dump_custom</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">t_list</span><span class="p">,</span> <span class="n">L_list</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Write ``dump custom`` data from in-memory frames.</span>
 
 <span class="sd">    Parameters</span>
