@@ -267,6 +267,21 @@ def distance_pbc(coord1, coord2, box):
 
 
 def read_lammps_full(file):
+    """
+    Read a LAMMPS data file with full atom style and optional potential coefficients.
+
+    Parameters
+    ----------
+    file : str
+        Path to the LAMMPS data file.
+
+    Returns
+    -------
+    lammps
+        An object containing parsed information from the data file, including
+        box bounds, atom data, masses, potential coefficients and topology.
+
+    """
 
     f = open(file, 'r')
     L = f.readlines()

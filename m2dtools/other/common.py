@@ -78,7 +78,10 @@ def read_pos(file_name):
     Returns
     -------
     tuple[numpy.ndarray, numpy.ndarray, numpy.ndarray, numpy.ndarray]
-        Box matrix, atomic species, species counts and Cartesian coordinates.
+        Box: ``(3, 3)`` lattice matrix,
+        a_type: sequence of element symbols,
+        num_type: number of atoms for each element,
+        coors: Cartesian coordinates for all atoms.
     """
     f = open(file_name, 'r')
     lf = list(f)
