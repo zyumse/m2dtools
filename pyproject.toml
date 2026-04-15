@@ -23,6 +23,9 @@ license = { file = "LICENSE" }
 packages = ["m2dtools"]
 license-files = []
 
+[project.scripts]
+m2d-subsample-dump = "m2dtools.lmp.subsample_dump:main"
+
 [project.urls]
 Homepage = "https://github.com/zyumse/m2dtools"
 Documentation = "https://zyumse.github.io/m2dtools/"
