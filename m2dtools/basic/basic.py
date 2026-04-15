@@ -157,6 +157,105 @@ def CN_kdtree(box, coors, cutoff):
     return CN, CN_idx, CN_dist
 
 
+def CN_kdtree_AB(box, coors, types, type_A, type_B, cutoff, mask_A=None, mask_B=None):
+    """
+    Coordination number of type-A atoms with type-B neighbors,
+    using KD-tree with orthorhombic PBC.
+
+    Parameters
+    ----------
+    box : (3,3) ndarray
+        Orthorhombic simulation cell (diagonal matrix).
+    coors : (N, 3) ndarray
+        Atomic coordinates of *all* atoms.
+    types : (N,) array-like or None
+        Type label for each atom (int, str, etc.). Can be None if masks are provided.
+    type_A : scalar or (N,) array-like boolean mask
+        Type label of the central atoms, or a boolean mask of length N.
+    type_B : scalar or (N,) array-like boolean mask
+        Type label of the neighbor atoms to count, or a boolean mask of length N.
+    cutoff : float
+        Distance cutoff.
+    mask_A : (N,) ndarray of bool, optional
+        Explicit explicit boolean mask for central atoms. Overrides type_A.
+    mask_B : (N,) ndarray of bool, optional
+        Explicit explicit boolean mask for neighbor atoms. Overrides type_B.
+
+    Returns
+    -------
+    CN : (n_A,) ndarray of int
+        Number of type-B neighbors within cutoff for each type-A atom.
+    CN_idx : list of ndarray
+        Indices (into the *original* ``coors`` array) of the type-B
+        neighbors for each type-A atom.
+    CN_dist : list of ndarray
+        Corresponding distances.
+    idx_A : (n_A,) ndarray of int
+        Indices (into ``coors``) of the type-A atoms, so that
+        ``coors[idx_A]`` gives their coordinates.
+    """
+    box = np.asarray(box, dtype=float)
+    coors = np.asarray(coors, dtype=float)
+
+    if not np.allclose(box, np.diag(np.diag(box))):
+        raise ValueError("CN_kdtree_AB requires an orthorhombic box")
+
+    box_lengths = np.diag(box)
+
+    # masks for A
+    if mask_A is not None:
+        mask_A_obj = np.asarray(mask_A, dtype=bool)
+    elif np.ndim(type_A) > 0 and len(np.asarray(type_A)) == len(coors):
+        mask_A_obj = np.asarray(type_A, dtype=bool)
+    else:
+        types = np.asarray(types)
+        mask_A_obj = types == type_A
+
+    # masks for B
+    if mask_B is not None:
+        mask_B_obj = np.asarray(mask_B, dtype=bool)
+    elif np.ndim(type_B) > 0 and len(np.asarray(type_B)) == len(coors):
+        mask_B_obj = np.asarray(type_B, dtype=bool)
+    else:
+        types = np.asarray(types)
+        mask_B_obj = types == type_B
+
+    idx_A = np.where(mask_A_obj)[0]
+    idx_B_set = set(np.where(mask_B_obj)[0])
+
+    # build tree over ALL atoms for correct PBC wrapping
+    tree = cKDTree(coors, boxsize=box_lengths)
+
+    n_A = idx_A.shape[0]
+    CN = np.zeros(n_A, dtype=int)
+    CN_idx = []
+    CN_dist = []
+
+    for k, i in enumerate(idx_A):
+        js = tree.query_ball_point(coors[i], cutoff)
+
+        idx_k = []
+        dist_k = []
+
+        for j in js:
+            if j == i or j not in idx_B_set:
+                continue
+
+            d = coors[j] - coors[i]
+            d -= box_lengths * np.rint(d / box_lengths)
+            r = np.sqrt(d[0]**2 + d[1]**2 + d[2]**2)
+
+            if r < cutoff:
+                idx_k.append(j)
+                dist_k.append(r)
+
+        CN[k] = len(idx_k)
+        CN_idx.append(np.asarray(idx_k, dtype=int))
+        CN_dist.append(np.asarray(dist_k, dtype=float))
+
+    return CN, CN_idx, CN_dist, idx_A
+
+
 def calc_compressibility(V, T=300):
     """Calculate the isothermal compressibility from volume fluctuations.
 
