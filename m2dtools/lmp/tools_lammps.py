@@ -266,6 +266,73 @@ def distance_pbc(coord1, coord2, box):
     return dist_matrix
 
 
+def read_lammps_atomic(file):
+    """Read an atomic-style LAMMPS data file written by ``write_lammps_atomic``.
+
+    Parameters
+    ----------
+    file : str
+        Path to the LAMMPS data file.
+
+    Returns
+    -------
+    lammps
+        Object with natoms, natom_types, x/y/z bounds, mass, and atom_info
+        (columns: atom_id, mol_id, type, charge, x, y, z, image_flag).
+    """
+    with open(file, 'r') as f:
+        lines = f.readlines()
+
+    natoms = natom_types = 0
+    x = y = z = [0.0, 0.0]
+    mass_list = []
+    atom_rows = []
+    section = None
+
+    for line in lines:
+        s = line.strip()
+        if not s or s.startswith('#'):
+            continue
+
+        if 'atoms' in s and 'atom types' not in s:
+            natoms = int(s.split()[0])
+        elif 'atom types' in s:
+            natom_types = int(s.split()[0])
+        elif 'xlo' in s:
+            x = [float(s.split()[0]), float(s.split()[1])]
+        elif 'ylo' in s:
+            y = [float(s.split()[0]), float(s.split()[1])]
+        elif 'zlo' in s:
+            z = [float(s.split()[0]), float(s.split()[1])]
+        elif s.startswith('Masses'):
+            section = 'Masses'
+        elif s.startswith('Atoms'):
+            section = 'Atoms'
+        else:
+            if section == 'Masses':
+                parts = s.split()
+                if len(parts) >= 2:
+                    mass_list.append(parts[:2])
+            elif section == 'Atoms':
+                parts = s.split()
+                if len(parts) >= 5:
+                    # format: atom_id type x y z
+                    atom_id, atype = int(parts[0]), int(parts[1])
+                    ax, ay, az = float(parts[2]), float(parts[3]), float(parts[4])
+                    atom_rows.append([atom_id, atom_id, atype, 0.0, ax, ay, az, 0])
+
+    mass = np.array(mass_list, dtype=object)
+    atom_info = np.array(atom_rows, dtype=object)
+
+    return lammps(
+        natoms=natoms,
+        natom_types=natom_types,
+        x=x, y=y, z=z,
+        mass=mass,
+        atom_info=atom_info,
+    )
+
+
 def read_lammps_full(file):
     """
     Read a LAMMPS data file with full atom style and optional potential coefficients.
