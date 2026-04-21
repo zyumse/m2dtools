@@ -4,6 +4,7 @@ __pycache__/
 *.eggs/
 dist/
 build/
+*pyc
 
 # -----------------------
 # MkDocs-related ignores
