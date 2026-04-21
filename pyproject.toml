@@ -16,11 +16,18 @@ dependencies = [
     "matplotlib",
     "scipy",
     "pandas",
+    "numba",
+    "networkx",
+    "joblib",
+    "pyyaml",
+    "seaborn",
+    "scienceplots",
 ]
 license = { file = "LICENSE" }
 
-[tool.setuptools]
-packages = ["m2dtools"]
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["m2dtools*"]
 license-files = []
 
 [project.scripts]

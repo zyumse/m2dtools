@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from . import my_common as mc
+from . import common as mc
 import scipy.constants as scc
 
 def read_lammps_dump(filename):

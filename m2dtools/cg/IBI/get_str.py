@@ -1,8 +1,6 @@
 import argparse
 import os
-import pdb
 import subprocess
-# from scipy.interpolate import CubicSpline
 import time
 from copy import copy
 import joblib
@@ -13,9 +11,9 @@ from joblib import Parallel, delayed
 from scipy.constants import Avogadro as NA
 from scipy.signal import savgol_filter
 
-from zy_md import my_common as mc
-from zy_md import tools_CG_polymer as tcp
-from zy_md import tools_lammps as tl_lmp
+from m2dtools.other import common as mc
+from m2dtools.cg import tools_CG_polymer as tcp
+from m2dtools.lmp import tools_lammps as tl_lmp
 from scipy.interpolate import UnivariateSpline
 from scipy.ndimage import gaussian_filter1d
 from scipy.fft import fft, ifft, fftfreq

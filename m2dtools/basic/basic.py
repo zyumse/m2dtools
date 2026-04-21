@@ -268,7 +268,8 @@ def compute_autocorrelation(forces, max_lag):
         faf[lag] = np.mean(dot_products)
 
     # Normalize by the zero-lag correlation
-    faf /= faf[0]
+    if faf[0] != 0:
+        faf /= faf[0]
 
     return faf
 

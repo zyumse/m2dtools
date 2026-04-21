@@ -1,5 +1,5 @@
 import numpy as np
-from . import tools_lammps as tl
+from m2dtools.lmp import tools_lammps as tl
 import datetime
 
 

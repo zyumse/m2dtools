@@ -2,9 +2,9 @@ import networkx as nx
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import my_common as mc
-import extract_local_str as els
-import tools_lammps as tool_lmp
+from m2dtools.other import common as mc
+from m2dtools.other import extract_local_str as els
+from m2dtools.lmp import tools_lammps as tool_lmp
 import copy
 import scipy.constants as scc
 

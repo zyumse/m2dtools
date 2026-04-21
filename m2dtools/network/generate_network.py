@@ -1,7 +1,7 @@
 import networkx as nx
 import numpy as np
-import my_common as mc
-import extract_local_str as els
+from m2dtools.other import common as mc
+from m2dtools.other import extract_local_str as els
 import itertools
 
 def create_ini_lammps(file_loc,box_size,density=0.05):

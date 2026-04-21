@@ -1,9 +1,8 @@
 import numpy as np
 import pandas as pd
 import datetime
-import zy_md.my_common as mc
-import zy_md.tools_lammps as tl_lmp
-import pdb
+from m2dtools.other import common as mc
+from m2dtools.lmp import tools_lammps as tl_lmp
 
 
 def dipole_dipole_correlation(positions, dipoles, L_list):
