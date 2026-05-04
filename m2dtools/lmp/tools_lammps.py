@@ -560,6 +560,97 @@ def read_lammps_dump_custom(dump_file, interval=1):
     return frame, t_list, L_list
 
 
+def iter_lammps_dump_custom(dump_file, interval=1):
+    """Iterate over a LAMMPS ``dump custom`` trajectory one frame at a time.
+
+    Parameters
+    ----------
+    dump_file : str
+        Path to the dump file.
+    interval : int, default 1
+        Keep only every ``interval``-th frame (1 = keep all).
+
+    Yields
+    ------
+    tuple[pandas.DataFrame, int, list]
+        ``(frame_df, timestep, L)`` where ``L`` is ``[[xlo,xhi],[ylo,yhi],[zlo,zhi]]``.
+    """
+    frame_count = 0
+    store_frame = False
+    natoms = 0
+    timestep = 0
+    L = None
+
+    with open(dump_file, 'r') as f:
+        for line in f:
+            if line.startswith('ITEM: TIMESTEP'):
+                frame_count += 1
+                timestep = int(next(f).split()[0])
+                store_frame = (frame_count % interval == 0)
+
+            elif line.startswith('ITEM: NUMBER OF ATOMS'):
+                natoms = int(next(f).split()[0])
+
+            elif line.startswith('ITEM: BOX'):
+                lx = [float(x) for x in next(f).split()[:2]]
+                ly = [float(x) for x in next(f).split()[:2]]
+                lz = [float(x) for x in next(f).split()[:2]]
+                L = [lx, ly, lz]
+
+            elif line.startswith('ITEM: ATOMS'):
+                columns = line.split()[2:]
+                if store_frame:
+                    data = []
+                    for _ in range(natoms):
+                        raw = next(f).split()
+                        row = []
+                        for x in raw[:len(columns)]:
+                            try:
+                                row.append(float(x))
+                            except ValueError:
+                                row.append(str(x))
+                        data.append(row)
+                    df = pd.DataFrame(data, columns=columns)
+                    df = df.sort_values(by=['id'])
+                    yield df, timestep, L
+                else:
+                    for _ in range(natoms):
+                        next(f)
+
+
+def write_lammps_dump_frame(f, frame, timestep, L):
+    """Write a single frame to an already-open dump file handle.
+
+    Parameters
+    ----------
+    f : file object
+        Open writable file handle.
+    frame : pandas.DataFrame
+        Atom data for this frame.
+    timestep : int
+        Timestep value.
+    L : list
+        Box bounds ``[[xlo,xhi],[ylo,yhi],[zlo,zhi]]``.
+    """
+    f.write('ITEM: TIMESTEP\n')
+    f.write(f'{timestep}\n')
+    f.write('ITEM: NUMBER OF ATOMS\n')
+    f.write(f'{len(frame)}\n')
+    f.write('ITEM: BOX BOUNDS pp pp pp\n')
+    for i in range(3):
+        f.write(f'{L[i][0]} {L[i][1]}\n')
+    f.write('ITEM: ATOMS ' + ' '.join(frame.columns) + '\n')
+    for i in range(len(frame)):
+        f.write('{:d} '.format(int(frame.iloc[i, 0])))
+        for j in range(1, len(frame.columns)):
+            val = frame.iloc[i, j]
+            if isinstance(val, (int, np.integer)):
+                f.write('{:d} '.format(int(val)))
+            else:
+                f.write('{:.6f} '.format(val))
+        f.write('\n')
+
+
 def write_lammps_dump_custom(file_name, frame, t_list, L_list):
     """Write ``dump custom`` data from in-memory frames.
 

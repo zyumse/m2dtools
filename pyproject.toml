@@ -25,13 +25,16 @@ dependencies = [
 ]
 license = { file = "LICENSE" }
 
+[tool.setuptools]
+license-files = []
+
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["m2dtools*"]
-license-files = []
 
 [project.scripts]
 m2d-subsample-dump = "m2dtools.lmp.subsample_dump:main"
+m2d-update-coords = "m2dtools.lmp.update_coords:main"
 
 [project.urls]
 Homepage = "https://github.com/zyumse/m2dtools"
